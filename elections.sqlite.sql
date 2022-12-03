@@ -1,13 +1,17 @@
 BEGIN TRANSACTION;
 
 -- Only admin (CIK) can add new political party, candidate and ballot
-create table if not exists Candidates
+create table if not exists Candidate
 (
     id           integer not null
         constraint Candidates_pk
             primary key autoincrement,
     list_number  integer not null unique,
-    name_surname TEXT    not null
+    name_surname TEXT    not null,
+    political_party_id integer not null
+        constraint Candidate_PoliticalParty_fk
+        references PoliticalParty (id)
+        on delete restrict
 );
 
 create table PoliticalParty
@@ -20,23 +24,23 @@ create table PoliticalParty
 );
 
 -- Ballot is predefined and one Elections have only dozens of Ballots, for example: Predstavnički dom, Za predsjednika, ...
-CREATE TABLE Ballot
-(
-    id                 integer not null
-        constraint Ballot_pk
-            primary key autoincrement,
-    political_party_id integer not null
-        constraint Votes_PoliticalParty_fk
-            references PoliticalParty (id)
-            on delete restrict,
-    candidate_id       integer not null
-        constraint Votes_Candidates_fk
-            references Candidates (id)
-            on delete restrict,
-    ballot_number      integer not null
-        constraint Ballot_number
-            unique
-);
+-- CREATE TABLE Ballot
+-- (
+--     id                 integer not null
+--         constraint Ballot_pk
+--             primary key autoincrement,
+--     political_party_id integer not null
+--         constraint Votes_PoliticalParty_fk
+--             references PoliticalParty (id)
+--             on delete restrict,
+--     candidate_id       integer not null
+--         constraint Votes_Candidates_fk
+--             references Candidate (id)
+--             on delete restrict,
+--     ballot_number      integer not null
+--         constraint Ballot_number
+--             unique
+-- );
 
 create table Vote
 (
@@ -53,23 +57,21 @@ INSERT INTO PoliticalParty (number, party_name) VALUES (1, 'Partija 1');
 INSERT INTO PoliticalParty (number, party_name) VALUES (2, 'Partija 2');
 INSERT INTO PoliticalParty (number, party_name) VALUES (3, 'Partija 3');
 
-INSERT INTO Candidates (list_number, name_surname) Values (1, 'Kandidat 1');
-INSERT INTO Candidates (list_number, name_surname) Values (2, 'Kandidat 2');
-INSERT INTO Candidates (list_number, name_surname) VALUES (3, 'Kandidat 3');
-INSERT INTO Candidates (list_number, name_surname) VALUES (4, 'Kandidat 4');
-INSERT INTO Candidates (list_number, name_surname) VALUES (5, 'Kandidat 5');
-INSERT INTO Candidates (list_number, name_surname) VALUES (6, 'Kandidat 6');
-INSERT INTO Candidates (list_number, name_surname) VALUES (7, 'Kandidat 7');
-INSERT INTO Candidates (list_number, name_surname) VALUES (8, 'Kandidat 8');
+INSERT INTO Candidate (list_number, name_surname, political_party_id) VALUES (1, 'Kandidat 1', 1);
+INSERT INTO Candidate (list_number, name_surname, political_party_id) VALUES (2, 'Kandidat 2', 1);
+INSERT INTO Candidate (list_number, name_surname, political_party_id) VALUES (3, 'Kandidat 3', 1);
+INSERT INTO Candidate (list_number, name_surname, political_party_id) VALUES (4, 'Kandidat 4', 2);
+INSERT INTO Candidate (list_number, name_surname, political_party_id) VALUES (5, 'Kandidat 5', 3);
+INSERT INTO Candidate (list_number, name_surname, political_party_id) VALUES (6, 'Kandidat 6', 3);
 
 -- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 1, abs(random()));
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 1, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 2, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 3, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (2, 4, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (2, 5, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (3, 6, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (3, 7, 1);
-INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (3, 8, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 1, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 2, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (1, 3, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (2, 4, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (2, 5, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (3, 6, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (3, 7, 1);
+-- INSERT INTO Ballot (political_party_id, candidate_id, ballot_number) VALUES (3, 8, 1);
 
 COMMIT;

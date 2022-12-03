@@ -31,9 +31,9 @@ public class Main extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("Izbori 2022");
         Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
-        scene.setOnMouseClicked(mouseEvent -> {
-            ctrl.makeBallotValid();
-        });
+//        scene.setOnMouseClicked(mouseEvent -> {
+//            ctrl.makeBallotValid();
+//        });
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setResizable(false);

@@ -27,7 +27,7 @@ public class ValidationController {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Greška");
                 alert.setHeaderText("Pogrešno popunjen listić");
-                alert.setContentText("Ne može se glasati za kandidate iz različitih stranaka");
+                alert.setContentText("Ne može se glasati za različite kandidate i stranke");
                 alert.showAndWait();
             }
         });

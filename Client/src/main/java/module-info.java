@@ -6,6 +6,7 @@ module ba.etf.elections.client {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires lombok;
+    requires com.fasterxml.jackson.databind;
 
     opens ba.etf.elections.client to javafx.fxml;
     exports ba.etf.elections.client;

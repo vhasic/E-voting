@@ -4,9 +4,9 @@ module ba.etf.elections.client {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
-    requires java.sql;
     requires lombok;
     requires com.fasterxml.jackson.databind;
+    requires itextpdf;
 
     opens ba.etf.elections.client to javafx.fxml;
     exports ba.etf.elections.client;

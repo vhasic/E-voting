@@ -20,7 +20,7 @@ public class ClientApplication extends Application {
         Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
     }
 
     public static void main(String[] args) {

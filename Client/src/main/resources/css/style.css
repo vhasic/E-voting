@@ -1,0 +1,16 @@
+.pagination > .pagination-control > .control-box {
+    /*-fx-spacing: 0;*/
+    -fx-font-size: 16;
+}
+
+
+/*https://stackoverflow.com/questions/28417140/styling-default-javafx-dialogs/28421229#28421229*/
+.dialogClass > *.label.content{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.dialogClass:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+}

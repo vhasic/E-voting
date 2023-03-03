@@ -3,10 +3,7 @@ package ba.etf.elections.client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -19,9 +16,18 @@ public class ValidationController {
 
     public GridPane gridPane; // this name must be exactly the same as the fx:id in the FXML file
     public Button btnSubmit;
+    public Button btnSubmitInvalid;
 
     @FXML
     protected void initialize() {
+        btnSubmitInvalid.setOnAction(actionEvent -> {
+            // submit results
+            System.out.println("Invalid ballot submitted");
+            Vote vote = Vote.createInvalidVote();
+            writeVoteToFile(vote);
+            clearBallot();
+        });
+
         btnSubmit.setOnAction(actionEvent -> {
             if (isBallotValid()) {
                 // submit results
@@ -33,10 +39,21 @@ public class ValidationController {
             } else {
                 // Show the error alert
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Greška");
-                alert.setHeaderText("Pogrešno popunjen listić");
-                alert.setContentText("Ne može se glasati za različite kandidate i stranke");
+                // todo fix path to css file
+//                 ../../../../resources/css/style.css
+                alert.getDialogPane().getStylesheets().add(".\\Client\\src\\main\\resources\\css\\style.css"); // adding stylesheet to the alert to make font bigger
+                alert.getDialogPane().getStyleClass().add("dialogClass"); // adding style class to the alert to make font bigger
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid ballot");
+                alert.setContentText("Please check your ballot and try again.");
                 alert.showAndWait();
+
+                /*// Show the warning alert with two buttons: cancel and submit anyway
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Ballot is not valid");
+                alert.setContentText("Do you want to submit anyway?");
+                alert.showAndWait();*/
             }
         });
     }
@@ -50,7 +67,8 @@ public class ValidationController {
 
         // read votes from file into a list
         try {
-            votes = mapper.readValue(file, new TypeReference<List<Vote>>() {});
+            votes = mapper.readValue(file, new TypeReference<>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             return;

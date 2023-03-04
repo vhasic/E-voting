@@ -2,7 +2,6 @@ package ba.etf.elections;
 
 import ba.etf.elections.client.Vote;
 import ba.etf.elections.client.helper.CryptographyHelper;
-import ba.etf.elections.client.helper.ICryptographyHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -10,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +17,7 @@ import java.util.Map;
 public class VoteCounter {
     public static void main(String[] args) {
         try {
-            CountVotes(System.getenv("filepath"));
+            CountVotes(System.getenv("pathToJsonVotesFile"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

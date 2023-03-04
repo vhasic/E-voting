@@ -7,9 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,24 +30,8 @@ public class ValidationController {
 
     @FXML
     protected void initialize() {
-        // todo: fix this loads all pages at once
         // initialize pagination
-//        pagination.setPageCount(2);
-//        pagination.setPageFactory(pageIndex -> {
-//            try {
-//                return switch (pageIndex) {
-//                    case 0 -> FXMLLoader.load(getClass().getResource("votingInstructions.fxml"));
-//                    case 1 -> FXMLLoader.load(getClass().getResource("exampleBallot.fxml"));
-//                    default -> null;
-//                };
-//                // FXMLLoader loader = new FXMLLoader(getClass().getResource("page" + pageIndex + ".fxml"));
-//                // return loader.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//        });
-
+//        pagination.setPageFactory((Integer pageIndex) -> getPageContent(pageIndex));
 
         btnSubmitInvalid.setOnAction(actionEvent -> {
             System.out.println("Invalid ballot submitted");
@@ -53,7 +39,7 @@ public class ValidationController {
             vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
             writeVoteToFile(vote);
             try {
-                PDFHelper.printToPDF(vote.toString(), ".\\Client\\PDFVotes\\");
+                PDFHelper.printToPDF(vote.toString(), System.getenv("folderPathToStorePDFs"));
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -67,7 +53,7 @@ public class ValidationController {
                 vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                 writeVoteToFile(vote);
                 try {
-                    PDFHelper.printToPDF(vote.toString(),".\\Client\\PDFVotes\\");
+                    PDFHelper.printToPDF(vote.toString(),System.getenv("folderPathToStorePDFs"));
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -84,6 +70,18 @@ public class ValidationController {
         });
     }
 
+    public Node getPageContent(int pageIndex){
+        try{
+            //Creating the view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("page" + pageIndex + ".fxml"));
+            Node node = loader.load();
+            return node;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     /**
      * Writes the vote to file as one object of JSON array format
      * @param vote vote to be written to file
@@ -91,7 +89,7 @@ public class ValidationController {
     private void writeVoteToFile(Vote vote) {
         ObjectMapper mapper = new ObjectMapper();
         List<Vote> votes;
-        File file = getFile(".\\Client\\Votes.json");
+        File file = getFile(System.getenv("pathToJsonVotesFile"));
         // read votes from file into a list
         try {
             votes = mapper.readValue(file, new TypeReference<>() {

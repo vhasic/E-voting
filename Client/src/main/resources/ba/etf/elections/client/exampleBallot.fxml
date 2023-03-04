@@ -510,7 +510,10 @@
                   </VBox>
                </children>
             </GridPane>
-         </content></ScrollPane>
+         </content>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin></ScrollPane>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="297.0" GridPane.columnSpan="2147483647" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
          <children>
             <Button fx:id="btnSubmit" mnemonicParsing="false" text="Glasaj">
@@ -521,7 +524,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnSubmitInvalid" mnemonicParsing="false" text="Predaj prazan (nevažeći) listić">
+            <Button fx:id="btnSubmitInvalid" mnemonicParsing="false" text="Predaj prazan/nevažeći listić">
                <font>
                   <Font size="18.0" />
                </font>

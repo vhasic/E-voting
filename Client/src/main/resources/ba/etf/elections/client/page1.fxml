@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <GridPane fx:id="gridPane" alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+            <ColumnConstraints halignment="CENTER" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox prefWidth="390.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 1">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 2">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefWidth="390.0" GridPane.rowIndex="2">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 3">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="240.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 4">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="400.0" layoutY="240.0" prefWidth="390.0" GridPane.rowIndex="3">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 5">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 6">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="400.0" layoutY="469.0" prefWidth="390.0" GridPane.rowIndex="4">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 7">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="699.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Stranka 8">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <CheckBox mnemonicParsing="false" text="1. Kandidat 1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="2. Kandidat 2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="45.0" mnemonicParsing="false" text="3. Kandidat 3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="4. Kandidat 4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="5. Kandidat 5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <Label alignment="CENTER" text="ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11" GridPane.columnSpan="2147483647">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </content>
+</ScrollPane>

@@ -11,9 +11,11 @@ import java.io.IOException;
 
 public class ClientApplication extends Application {
     @Override
-    public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
+    public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(ClientApplication.class.getResource("exampleBallot.fxml"));
         ValidationController ctrl = new ValidationController();
+//        FXMLLoader loader = new FXMLLoader(ClientApplication.class.getResource("mainBallot.fxml"));
+//        MainController ctrl = new MainController();
         loader.setController(ctrl);
         Parent root = loader.load();
         primaryStage.setTitle("Izbori 2022");

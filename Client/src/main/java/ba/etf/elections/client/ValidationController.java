@@ -21,18 +21,16 @@ public class ValidationController {
     @FXML
     protected void initialize() {
         btnSubmitInvalid.setOnAction(actionEvent -> {
-            // submit results
             System.out.println("Invalid ballot submitted");
             Vote vote = Vote.createInvalidVote();
+            vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
             writeVoteToFile(vote);
             clearBallot();
         });
 
         btnSubmit.setOnAction(actionEvent -> {
             if (isBallotValid()) {
-                // submit results
-                System.out.println("Ballot is valid");
-//                List<Vote> votes = getVotedCandidates();
+                System.out.println("Valid ballot submitted");
                 Vote vote = getVotedCandidates();
                 writeVoteToFile(vote);
                 clearBallot();
@@ -58,13 +56,14 @@ public class ValidationController {
         });
     }
 
-    // method that writes the votes to file in JSON array format
+    /**
+     * Writes the vote to file as one object of JSON array format
+     * @param vote vote to be written to file
+     */
     private void writeVoteToFile(Vote vote) {
         ObjectMapper mapper = new ObjectMapper();
         List<Vote> votes;
-//        File file = new File(".\\Client\\Votes.json");
         File file = getFile(".\\Client\\Votes.json");
-
         // read votes from file into a list
         try {
             votes = mapper.readValue(file, new TypeReference<>() {
@@ -73,10 +72,8 @@ public class ValidationController {
             e.printStackTrace();
             return;
         }
-
         // append new vote to the list
         votes.add(vote);
-
         // write new list to the file
         try {
             mapper.writeValue(file, votes);
@@ -85,6 +82,11 @@ public class ValidationController {
         }
     }
 
+    /**
+     * Returns opened file with given name. If file doesn't exist, creates it and writes empty JSON array to it.
+     * @param filename name of the file to be created if it doesn't exist
+     * @return file with given name
+     */
     private File getFile(String filename) {
         File file = new File(filename);
         if (!file.exists()) {
@@ -100,6 +102,10 @@ public class ValidationController {
     }
 
 
+    /**
+     * Gets all selected fields from the ballot
+     * @return vote that has list of strings that represent voted candidates
+     */
     private Vote getVotedCandidates() {
         Vote vote = new Vote();
         gridPane.getChildren()
@@ -115,18 +121,24 @@ public class ValidationController {
                         return false;
                     });
                     if (anySelected) {
+                        String candidateParty = ((RadioButton) vBox.getChildren().get(0)).getText();
                         vBox.getChildren().forEach(node -> {
                             if (node instanceof RadioButton radioButton && radioButton.isSelected()) {// if party was selected
                                 vote.getVotedCandidates().add(radioButton.getText());
                             } else if (node instanceof CheckBox checkBox && checkBox.isSelected()) { // if candidate was selected
-                                vote.getVotedCandidates().add(checkBox.getText());
+                                vote.getVotedCandidates().add(candidateParty+":"+checkBox.getText()); // i.e "Party A:1. Candidate 1"
                             }
                         });
+                        vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                     }
                 });
         return vote;
     }
 
+    /**
+     * Checks if ballot is valid: Only party or multiple candidates from one group on ballot can be selected
+     * @return true if ballot is valid, false otherwise
+     */
     private boolean isBallotValid() {
         List<VBox> vBoxes = gridPane.getChildren()
                 .stream()
@@ -166,6 +178,9 @@ public class ValidationController {
         return true;
     }
 
+    /**
+     * Clears all markings from the ballot
+     */
     private void clearBallot() {
         gridPane.getChildren().forEach(node -> {
             if (node instanceof VBox vBox) {
@@ -180,34 +195,3 @@ public class ValidationController {
         });
     }
 }
-
-/*
-private List<Vote> getVotedCandidates() {
-        List<Vote> votedCandidates = new ArrayList<>();
-        gridPane.getChildren()
-                .stream()
-                .filter(node -> node instanceof VBox)
-                .forEach(nodeVBox -> {
-                    VBox vBox = (VBox) nodeVBox;
-                    // get vBox that has votes in it
-                    boolean anySelected = vBox.getChildren().stream().anyMatch(node -> {
-                        if ((node instanceof RadioButton && ((RadioButton) node).isSelected()) || (node instanceof CheckBox && ((CheckBox) node).isSelected())) {
-                            return true;
-                        }
-                        return false;
-                    });
-                    if (anySelected) {
-                        vBox.getChildren().forEach(node -> {
-                            if (node instanceof RadioButton radioButton && radioButton.isSelected()) {// if party was selected
-                                Vote vote = new Vote(radioButton.getText());
-                                votedCandidates.add(vote);
-                            } else if (node instanceof CheckBox checkBox && checkBox.isSelected()) { // if candidate was selected
-                                Vote vote = new Vote(checkBox.getText());
-                                votedCandidates.add(vote);
-                            }
-                        });
-                    }
-                });
-        return votedCandidates;
-    }
- */

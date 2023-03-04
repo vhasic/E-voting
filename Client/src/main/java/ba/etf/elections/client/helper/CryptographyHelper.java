@@ -12,8 +12,8 @@ public class CryptographyHelper implements ICryptographyHelper{
      * @param data Data to be hashed
      * @return MAC hash
      */
-    public String createMACHash(String data) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = System. getenv("key");
+    public static String createMACHash(String data) throws NoSuchAlgorithmException, InvalidKeyException {
+        String key = System.getenv("key");
         String algorithm = "HmacSHA256";
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), algorithm);
         Mac mac = Mac.getInstance(algorithm);
@@ -27,12 +27,12 @@ public class CryptographyHelper implements ICryptographyHelper{
      * @param hmacSHA256Value MAC hash to be validated
      * @return True if MAC hash is valid, false otherwise
      */
-    public Boolean validateMACHash(String data, String hmacSHA256Value) throws NoSuchAlgorithmException, InvalidKeyException {
+    public static Boolean validateMACHash(String data, String hmacSHA256Value) throws NoSuchAlgorithmException, InvalidKeyException {
         String macHash = createMACHash(data);
         return macHash.equals(hmacSHA256Value);
     }
 
-    private String bytesToHex(byte[] bytes) {
+    private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
             sb.append(String.format("%02x", b));

@@ -1,30 +1,62 @@
 package ba.etf.elections.client;
 
+import ba.etf.elections.client.helper.IPDFHelper;
+import ba.etf.elections.client.helper.PDFHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class ValidationController {
 
     public GridPane gridPane; // this name must be exactly the same as the fx:id in the FXML file
+    public Pagination pagination;
     public Button btnSubmit;
     public Button btnSubmitInvalid;
 
+
     @FXML
     protected void initialize() {
+        // todo: fix this loads all pages at once
+        // initialize pagination
+//        pagination.setPageCount(2);
+//        pagination.setPageFactory(pageIndex -> {
+//            try {
+//                return switch (pageIndex) {
+//                    case 0 -> FXMLLoader.load(getClass().getResource("votingInstructions.fxml"));
+//                    case 1 -> FXMLLoader.load(getClass().getResource("exampleBallot.fxml"));
+//                    default -> null;
+//                };
+//                // FXMLLoader loader = new FXMLLoader(getClass().getResource("page" + pageIndex + ".fxml"));
+//                // return loader.load();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                return null;
+//            }
+//        });
+
+
         btnSubmitInvalid.setOnAction(actionEvent -> {
             System.out.println("Invalid ballot submitted");
             Vote vote = Vote.createInvalidVote();
             vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
             writeVoteToFile(vote);
+            try {
+                PDFHelper.printToPDF(vote.toString(), ".\\Client\\PDFVotes\\");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             clearBallot();
         });
 
@@ -32,26 +64,22 @@ public class ValidationController {
             if (isBallotValid()) {
                 System.out.println("Valid ballot submitted");
                 Vote vote = getVotedCandidates();
+                vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                 writeVoteToFile(vote);
+                try {
+                    PDFHelper.printToPDF(vote.toString(),".\\Client\\PDFVotes\\");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 clearBallot();
             } else {
                 // Show the error alert
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                // todo fix path to css file
-//                 ../../../../resources/css/style.css
-                alert.getDialogPane().getStylesheets().add(".\\Client\\src\\main\\resources\\css\\style.css"); // adding stylesheet to the alert to make font bigger
-                alert.getDialogPane().getStyleClass().add("dialogClass"); // adding style class to the alert to make font bigger
-                alert.setTitle("Error");
-                alert.setHeaderText("Invalid ballot");
-                alert.setContentText("Please check your ballot and try again.");
+                alert.getDialogPane().setStyle("-fx-font-size: 18px;"); // set font size of alert dialog
+                alert.setTitle("Greška");
+                alert.setHeaderText("Nevalidno popunjen glasački listić");
+                alert.setContentText("Molimo da popunite glasački listić ispravno.");
                 alert.showAndWait();
-
-                /*// Show the warning alert with two buttons: cancel and submit anyway
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("Ballot is not valid");
-                alert.setContentText("Do you want to submit anyway?");
-                alert.showAndWait();*/
             }
         });
     }
@@ -129,7 +157,6 @@ public class ValidationController {
                                 vote.getVotedCandidates().add(candidateParty+":"+checkBox.getText()); // i.e "Party A:1. Candidate 1"
                             }
                         });
-                        vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                     }
                 });
         return vote;

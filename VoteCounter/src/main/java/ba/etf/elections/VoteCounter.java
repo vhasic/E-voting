@@ -19,7 +19,7 @@ import java.util.Map;
 public class VoteCounter {
     public static void main(String[] args) {
         try {
-            CountVotes(".\\Client\\Votes.json");
+            CountVotes(System.getenv("filepath"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -34,8 +34,7 @@ public class VoteCounter {
         Map<String, Integer> voteCountHashMap = new LinkedHashMap<>();
 
         for (Vote vote: votes) {
-            ICryptographyHelper cryptographyHelper = new CryptographyHelper();
-            Boolean macHashMatch = cryptographyHelper.validateMACHash(vote.getVotedCandidates().toString(), vote.getVoteMacHash());
+            Boolean macHashMatch = CryptographyHelper.validateMACHash(vote.getVotedCandidates().toString(), vote.getVoteMacHash());
             if (macHashMatch == false){
                 throw new RuntimeException("MAC hash does not match. Vote integrity compromised.");
             }

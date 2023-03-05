@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +25,8 @@ public class ValidationController {
     public Button btnSubmit;
     public Button btnSubmitInvalid;
     public Button btnNext;
-    private static int CURRENT_PAGE = 1;
+    private static int CURRENT_PAGE = 0;
+    private static final List<String> FILES_TO_STORE_VOTES = Arrays.asList(".\\Client\\Votes_Predstavnicki_Dom.json",".\\Client\\Votes_Skupstina.json");
 
 
     @FXML
@@ -118,7 +121,7 @@ public class ValidationController {
         ObjectMapper mapper = new ObjectMapper();
         List<Vote> votes;
 //        File file = getFile(System.getenv("pathToJsonVotesFile"));
-        File file = getFile(".\\Client\\Votes.json");
+        File file = getFile(FILES_TO_STORE_VOTES.get(CURRENT_PAGE));
         // read votes from file into a list
         try {
             votes = mapper.readValue(file, new TypeReference<>() {

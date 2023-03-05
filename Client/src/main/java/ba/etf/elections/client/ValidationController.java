@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +20,6 @@ import java.util.Optional;
 public class ValidationController {
 
     public GridPane gridPane; // this name must be exactly the same as the fx:id in the FXML file
-//    public Pagination pagination;
     public Button btnSubmit;
     public Button btnSubmitInvalid;
     public Button btnNext;
@@ -90,7 +88,7 @@ public class ValidationController {
         // get the current stage from the button that was clicked
         Stage currentStage = (Stage) btnNext.getScene().getWindow();
         CURRENT_PAGE++; // on button next click, increment the current page and open the next page
-        CommonFunctions.switchToNewScene(ClientApplication.class.getResource("mainBallot" + CURRENT_PAGE + ".fxml"), currentStage);
+        CommonFunctions.switchToNewScene(ElectionApp.class.getResource("mainBallot" + CURRENT_PAGE + ".fxml"), currentStage);
     }
 
     private void submitVote(Vote vote){

@@ -1,6 +1,5 @@
 package ba.etf.elections.client.helper;
 
-import ba.etf.elections.client.ClientApplication;
 import ba.etf.elections.client.ValidationController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

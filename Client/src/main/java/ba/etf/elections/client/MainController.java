@@ -3,10 +3,15 @@ package ba.etf.elections.client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 
+import java.io.IOException;
+
 public class MainController {
-    public Pagination pagination;
+
+    /*public Pagination pagination;
     private Integer lastPageAccessed = 0;
     @FXML
     protected void initialize() {
@@ -34,6 +39,6 @@ public class MainController {
             System.out.println(e.getMessage());
         }
         return null;
-    }
+    }*/
 
 }

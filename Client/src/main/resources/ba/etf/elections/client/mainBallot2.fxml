@@ -704,7 +704,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnNext" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" text="Sljedeći list">
+            <Button fx:id="btnNext" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" text="Sljedeći list" visible="false">
                <font>
                   <Font size="18.0" />
                </font>
@@ -716,7 +716,7 @@
       </HBox>
       <VBox alignment="CENTER" GridPane.columnSpan="2147483647">
          <children>
-            <Label alignment="CENTER" text="ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11">
+            <Label alignment="CENTER" text="SKUPŠTINE KANTONA U FEDERACIJI BIH KANTON 9">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

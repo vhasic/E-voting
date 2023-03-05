@@ -1,31 +1,29 @@
 package ba.etf.elections.client;
 
-import ba.etf.elections.client.helper.IPDFHelper;
+import ba.etf.elections.client.helper.CommonFunctions;
 import ba.etf.elections.client.helper.PDFHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
+import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 public class ValidationController {
 
     public GridPane gridPane; // this name must be exactly the same as the fx:id in the FXML file
-    public Pagination pagination;
+//    public Pagination pagination;
     public Button btnSubmit;
     public Button btnSubmitInvalid;
+    public Button btnNext;
+    private static int CURRENT_PAGE = 1;
 
 
     @FXML
@@ -33,55 +31,85 @@ public class ValidationController {
         // initialize pagination
 //        pagination.setPageFactory((Integer pageIndex) -> getPageContent(pageIndex));
 
-        btnSubmitInvalid.setOnAction(actionEvent -> {
-            System.out.println("Invalid ballot submitted");
-            Vote vote = Vote.createInvalidVote();
-            vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
-            writeVoteToFile(vote);
-            try {
-                PDFHelper.printToPDF(vote.toString(), System.getenv("folderPathToStorePDFs"));
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+        btnNext.setOnAction(actionEvent -> {
+            Alert alert = createAlert("Obavještenje", "Jeste li sigurni da želite preći na sljedeći glasački listić?", "Molimo da potvrdite da želite preći na sljedeći glasački listić,\ntrenutni će biti predat kao nevažeći.", Alert.AlertType.WARNING);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+                // hand in the current ballot as invalid
+                System.out.println("Invalid ballot submitted");
+                Vote vote = Vote.createInvalidVote();
+                vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
+                submitVote(vote);
+
+                openNextPage();
             }
-            clearBallot();
+        });
+
+        btnSubmitInvalid.setOnAction(actionEvent -> {
+            // Wait for the user to press the OK button
+            Alert alert = createAlert("Obavještenje", "Jeste li sigurni da želite predati nevažeći glasački listić?", "Molimo da potvrdite da želite predati nevažeći glasački listić.", Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                System.out.println("Invalid ballot submitted");
+                Vote vote = Vote.createInvalidVote();
+                vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
+                submitVote(vote);
+
+                openNextPage();
+            }
+
         });
 
         btnSubmit.setOnAction(actionEvent -> {
             if (isBallotValid()) {
-                System.out.println("Valid ballot submitted");
-                Vote vote = getVotedCandidates();
-                vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
-                writeVoteToFile(vote);
-                try {
-                    PDFHelper.printToPDF(vote.toString(),System.getenv("folderPathToStorePDFs"));
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                // Wait for the user to press the OK button
+                Alert alert = createAlert("Obavještenje", "Jeste li sigurni da želite predati glasački listić?", "Molimo da potvrdite da želite predati glasački listić.", Alert.AlertType.CONFIRMATION);
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if(result.isPresent() && result.get() == ButtonType.OK){
+                    System.out.println("Valid ballot submitted");
+                    Vote vote = getVotedCandidates();
+                    vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
+                    submitVote(vote);
+
+                    openNextPage();
                 }
-                clearBallot();
             } else {
                 // Show the error alert
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.getDialogPane().setStyle("-fx-font-size: 18px;"); // set font size of alert dialog
-                alert.setTitle("Greška");
-                alert.setHeaderText("Nevalidno popunjen glasački listić");
-                alert.setContentText("Molimo da popunite glasački listić ispravno.");
+                Alert alert = createAlert("Greška", "Nevalidno popunjen glasački listić", "Molimo da popunite glasački listić ispravno.", Alert.AlertType.ERROR);
                 alert.showAndWait();
             }
         });
     }
 
-    public Node getPageContent(int pageIndex){
-        try{
-            //Creating the view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("page" + pageIndex + ".fxml"));
-            Node node = loader.load();
-            return node;
+    private void openNextPage(){
+        // get the current stage from the button that was clicked
+        Stage currentStage = (Stage) btnNext.getScene().getWindow();
+        CURRENT_PAGE++; // on button next click, increment the current page and open the next page
+        CommonFunctions.switchToNewScene(ClientApplication.class.getResource("mainBallot" + CURRENT_PAGE + ".fxml"), currentStage);
+    }
+
+    private void submitVote(Vote vote){
+        writeVoteToFile(vote);
+        try {
+            PDFHelper.printToPDF(vote.toString(), ".\\Client\\PDFVotes\\");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        clearBallot();
     }
 
+    private Alert createAlert(String title, String header, String content, Alert.AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.getDialogPane().setStyle("-fx-font-size: 18px;"); // set font size of alert dialog
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        return alert;
+    }
+
+    // todo: these environment variables have problem because of some special characters: folderPathToStorePDFs=.\\Client\\PDFVotes\\;pathToJsonVotesFile=.\\Client\\Votes.json;
     /**
      * Writes the vote to file as one object of JSON array format
      * @param vote vote to be written to file
@@ -89,7 +117,8 @@ public class ValidationController {
     private void writeVoteToFile(Vote vote) {
         ObjectMapper mapper = new ObjectMapper();
         List<Vote> votes;
-        File file = getFile(System.getenv("pathToJsonVotesFile"));
+//        File file = getFile(System.getenv("pathToJsonVotesFile"));
+        File file = getFile(".\\Client\\Votes.json");
         // read votes from file into a list
         try {
             votes = mapper.readValue(file, new TypeReference<>() {

@@ -17,7 +17,9 @@ import java.util.Map;
 public class VoteCounter {
     public static void main(String[] args) {
         try {
-            CountVotes(System.getenv("pathToJsonVotesFile"));
+//            CountVotes(System.getenv("pathToJsonVotesFile"));
+            String folderPath = "." + File.separator + "JSONVotes" + File.separator;
+            CountVotes(folderPath + "Votes_Predstavnicki_Dom.json");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

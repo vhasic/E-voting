@@ -14,12 +14,15 @@ public class ElectionApp extends Application {
     public void start(Stage primaryStage) throws IOException {
 //        FXMLLoader loader = new FXMLLoader(ClientApplication.class.getResource("exampleBallot.fxml"));
 //        ValidationController ctrl = new ValidationController();
-        FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("votingInstructions.fxml"));
-        InstructionsController ctrl = new InstructionsController();
+//        FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("votingInstructions.fxml"));
+//        InstructionsController ctrl = new InstructionsController();
+        FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("mainBallot.fxml"));
+        MainController ctrl = new MainController();
         loader.setController(ctrl);
         Parent root = loader.load();
         primaryStage.setTitle("Izbori 2022");
         Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
+//        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setResizable(true);

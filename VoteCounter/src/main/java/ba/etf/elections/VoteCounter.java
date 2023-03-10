@@ -18,7 +18,8 @@ public class VoteCounter {
     public static void main(String[] args) {
         try {
 //            CountVotes(System.getenv("pathToJsonVotesFile"));
-            String folderPath = "." + File.separator + "JSONVotes" + File.separator;
+//            String folderPath = "." + File.separator + "JSONVotes" + File.separator;
+            String folderPath = "";
             CountVotes(folderPath + "Votes_Predstavnicki_Dom.json");
         } catch (Exception e) {
             System.out.println(e.getMessage());

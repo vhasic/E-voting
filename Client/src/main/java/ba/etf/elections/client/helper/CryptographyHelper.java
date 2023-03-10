@@ -5,7 +5,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-public class CryptographyHelper implements ICryptographyHelper{
+public class CryptographyHelper{
     /**
      * Creates MAC hash for the vote
      * <a href="https://www.baeldung.com/java-hmac">Link</a>

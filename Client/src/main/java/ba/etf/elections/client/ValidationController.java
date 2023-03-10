@@ -20,15 +20,19 @@ import java.util.Optional;
 public class ValidationController {
 
     private static final List<String> FILES_TO_STORE_VOTES = Arrays.asList("Votes_Predstavnicki_Dom.json", "Votes_Skupstina.json");
-    private static int CURRENT_PAGE = 0;
+    private static int currentPage = 0;
     public GridPane gridPane; // this name must be exactly the same as the fx:id in the FXML file
     public Button btnSubmit;
     public Button btnSubmitInvalid;
-    public Button btnNext;
+    public Button btnPage0;
+    public Button btnPage1;
+    public Button btnPage2;
+    public Button btnPage3;
+    public Button btnPage4;
 
     @FXML
     protected void initialize() {
-        btnNext.setOnAction(actionEvent -> {
+/*        btnNext.setOnAction(actionEvent -> {
             Alert alert = createAlert("Obavještenje", "Jeste li sigurni da želite preći na sljedeći glasački listić?", "Molimo da potvrdite da želite preći na sljedeći glasački listić,\ntrenutni će biti predat kao nevažeći.", Alert.AlertType.WARNING);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -40,6 +44,22 @@ public class ValidationController {
 
                 openNextPage();
             }
+        });*/
+
+        btnPage0.setOnAction(actionEvent -> {
+            openPage(0);
+        });
+        btnPage1.setOnAction(actionEvent -> {
+            openPage(1);
+        });
+        btnPage2.setOnAction(actionEvent -> {
+            openPage(2);
+        });
+        btnPage3.setOnAction(actionEvent -> {
+            openPage(3);
+        });
+        btnPage4.setOnAction(actionEvent -> {
+            openPage(4);
         });
 
         btnSubmitInvalid.setOnAction(actionEvent -> {
@@ -53,7 +73,9 @@ public class ValidationController {
                 vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                 submitVote(vote);
 
-                openNextPage();
+//                    openNextPage();
+                deactivateButton(currentPage);
+                openPage(currentPage+1);
             }
 
         });
@@ -61,7 +83,10 @@ public class ValidationController {
         btnSubmit.setOnAction(actionEvent -> {
             if (isBallotValid()) {
                 // Wait for the user to press the OK button
-                Alert alert = createAlert("Obavještenje", "Jeste li sigurni da želite predati glasački listić?", "Molimo da potvrdite da želite predati glasački listić.", Alert.AlertType.CONFIRMATION);
+                Alert alert = createAlert("Obavještenje",
+                        "Jeste li sigurni da želite predati glasački listić?",
+                        "Molimo da potvrdite da želite predati glasački listić.",
+                        Alert.AlertType.CONFIRMATION);
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -70,14 +95,35 @@ public class ValidationController {
                     vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                     submitVote(vote);
 
-                    openNextPage();
+//                    openNextPage();
+                    deactivateButton(currentPage);
+                    openPage(currentPage+1);
                 }
             } else {
                 // Show the error alert
-                Alert alert = createAlert("Greška", "Nevalidno popunjen glasački listić", "Molimo da popunite glasački listić ispravno.", Alert.AlertType.ERROR);
+                Alert alert = createAlert("Greška",
+                        "Nevalidno popunjen glasački listić",
+                        "Označite samo jednu političku stranku, koaliciju ili nezavisnog kandidata ili onoliko kandidata koliko želite unutar jednog okvira",
+                        Alert.AlertType.ERROR);
                 alert.showAndWait();
             }
         });
+    }
+
+    private void deactivateButton(Integer page) {
+        switch (page) {
+            case 1 -> btnPage1.setDisable(true);
+            case 2 -> btnPage2.setDisable(true);
+            case 3 -> btnPage3.setDisable(true);
+            case 4 -> btnPage4.setDisable(true);
+        }
+    }
+
+    private void openPage(Integer page) {
+        // get the current stage from the button that was clicked
+        Stage currentStage = (Stage) btnSubmit.getScene().getWindow();
+        currentPage = page;
+        CommonFunctions.switchToNewScene(ElectionApp.class.getResource("page" + page + ".fxml"), currentStage);
     }
 
     /**
@@ -85,20 +131,21 @@ public class ValidationController {
      */
     private void openNextPage() {
         // get the current stage from the button that was clicked
-        Stage currentStage = (Stage) btnNext.getScene().getWindow();
-        CURRENT_PAGE++; // on button next click, increment the current page and open the next page
-        CommonFunctions.switchToNewScene(ElectionApp.class.getResource("mainBallot" + CURRENT_PAGE + ".fxml"), currentStage);
+        Stage currentStage = (Stage) btnSubmit.getScene().getWindow();
+        currentPage++; // on button next click, increment the current page and open the next page
+        CommonFunctions.switchToNewScene(ElectionApp.class.getResource("mainBallot" + currentPage + ".fxml"), currentStage);
     }
 
     /**
      * Writes vote to file and prints it to PDF. At the end, clears the ballot.
+     *
      * @param vote vote to be written to file and printed to PDF
      */
     private void submitVote(Vote vote) {
         writeVoteToFile(vote);
         try {
             // store PDFs in ./PDFVotes/ folder
-            PDFHelper.printToPDF(vote.toString(), "." + File.separator + "PDFVotes" + File.separator);
+            PDFHelper.printToPDF(vote, "." + File.separator + "PDFVotes" + File.separator);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -107,9 +154,10 @@ public class ValidationController {
 
     /**
      * Creates an alert dialog with the given parameters
-     * @param title title of the alert dialog
-     * @param header header of the alert dialog
-     * @param content content of the alert dialog
+     *
+     * @param title     title of the alert dialog
+     * @param header    header of the alert dialog
+     * @param content   content of the alert dialog
      * @param alertType type of the alert dialog
      * @return alert dialog
      */
@@ -130,8 +178,9 @@ public class ValidationController {
     private void writeVoteToFile(Vote vote) {
         ObjectMapper mapper = new ObjectMapper();
         List<Vote> votes;
-        String folderPath = "." + File.separator + "JSONVotes" + File.separator;
-        File file = getFile(folderPath + FILES_TO_STORE_VOTES.get(CURRENT_PAGE));
+//        String folderPath = "." + File.separator + "JSONVotes" + File.separator;
+        String folderPath = "";
+        File file = getFile(folderPath + FILES_TO_STORE_VOTES.get(currentPage));
         // read votes from file into a list
         try {
             votes = mapper.readValue(file, new TypeReference<>() {

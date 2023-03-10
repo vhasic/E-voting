@@ -1,7 +1,6 @@
 package ba.etf.elections.client;
 
 import ba.etf.elections.client.helper.CryptographyHelper;
-import ba.etf.elections.client.helper.ICryptographyHelper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -24,7 +23,7 @@ public class Vote {
         return invalidVote;
     }
 
-    public void calculateVoteMacHash(){
+    public void calculateVoteMacHash() {
         String HmacSHA256 = null;
         try {
             HmacSHA256 = CryptographyHelper.createMACHash(votedCandidates.toString());

@@ -5,6 +5,7 @@ import ba.etf.elections.client.helper.PDFHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.DocumentException;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -73,19 +75,47 @@ public class MainController {
 
         btnSubmit.setOnAction(actionEvent -> {
             if (isBallotValid()) {
-                // Wait for the user to press the OK button
-                Alert alert = createAlert("Obavještenje",
-                        "Jeste li sigurni da želite predati glasački listić?",
-                        "Molimo da potvrdite da želite predati glasački listić.",
-                        Alert.AlertType.CONFIRMATION);
+                Vote vote = getVotedCandidates();
+                vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.getDialogPane().setStyle("-fx-font-size: 18px;"); // set font size of alert dialog
+                alert.setTitle("Obavještenje");
+                alert.setHeaderText("Jeste li sigurni da želite predati glasački listić?");
+
+
+                // Create a GridPane to hold the text and image
+                GridPane grid = new GridPane();
+                // Create a label for the text
+                Label label = new Label("Molimo da potvrdite da želite predati glasački listić.\n" +
+                        "Ovako će izgledati predati listić:\n" + CommonFunctions.getFormattedVoteCandidates(vote));
+                label.setWrapText(true);
+                // Create an image view for the image
+                ImageView imageView = null;
+                try {
+                    // Convert java.awt.Image to javafx.scene.image.Image
+                    java.awt.Image awtImage =  CommonFunctions.getAWTQRCodeImage(vote);
+                    BufferedImage bImage = new BufferedImage(awtImage.getWidth(null), awtImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                    bImage.getGraphics().drawImage(awtImage, 0, 0, null);
+                    javafx.scene.image.Image fxImage = SwingFXUtils.toFXImage(bImage, null);
+                    imageView = new ImageView(fxImage);
+                } catch (DocumentException e) {
+                    throw new RuntimeException(e);
+                }
+                // Add the label and image view to the grid
+                grid.add(label, 0, 0);
+                grid.add(imageView, 0, 1);
+                grid.setHgap(10);
+                grid.setVgap(10);
+                // Set the grid as the content for the dialog pane
+                alert.getDialogPane().setContent(grid);
+
+
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     System.out.println("Valid ballot submitted");
-                    Vote vote = getVotedCandidates();
-                    vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                     submitVote(vote);
-
                     deactivateButton(currentPage);
                     openPage(currentPage+1);
                 }

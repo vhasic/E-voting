@@ -70,6 +70,13 @@
             <artifactId>itextpdf</artifactId>
             <version>5.5.13.3</version>
         </dependency>
+<!--        to convert image from itext to fx image-->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>19</version>
+        </dependency>
+
     </dependencies>
 
     <build>

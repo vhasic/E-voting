@@ -22,7 +22,7 @@
       <RowConstraints maxHeight="188.79998779296875" minHeight="57.5999755859375" prefHeight="57.5999755859375" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="3">
+      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.hgrow="SOMETIMES" GridPane.rowSpan="3" GridPane.vgrow="SOMETIMES">
          <content>
             <GridPane fx:id="gridPane" alignment="CENTER">
                <columnConstraints>

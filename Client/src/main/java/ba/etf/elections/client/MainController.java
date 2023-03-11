@@ -8,11 +8,9 @@ import com.itextpdf.text.DocumentException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -37,21 +35,11 @@ public class MainController {
 
     @FXML
     protected void initialize() {
-        btnPage0.setOnAction(actionEvent -> {
-            openPage(0);
-        });
-        btnPage1.setOnAction(actionEvent -> {
-            openPage(1);
-        });
-        btnPage2.setOnAction(actionEvent -> {
-            openPage(2);
-        });
-        btnPage3.setOnAction(actionEvent -> {
-            openPage(3);
-        });
-        btnPage4.setOnAction(actionEvent -> {
-            openPage(4);
-        });
+        btnPage0.setOnAction(actionEvent -> openPage(0));
+        btnPage1.setOnAction(actionEvent -> openPage(1));
+        btnPage2.setOnAction(actionEvent -> openPage(2));
+        btnPage3.setOnAction(actionEvent -> openPage(3));
+        btnPage4.setOnAction(actionEvent -> openPage(4));
 
         btnSubmitInvalid.setOnAction(actionEvent -> {
             // Wait for the user to press the OK button
@@ -68,7 +56,7 @@ public class MainController {
                 submitVote(vote);
 
                 deactivateButton(currentPage);
-                openPage(currentPage+1);
+                openPage(currentPage + 1);
             }
 
         });
@@ -91,10 +79,10 @@ public class MainController {
                         "Ovako će izgledati predati listić:\n" + CommonFunctions.getFormattedVoteCandidates(vote));
                 label.setWrapText(true);
                 // Create an image view for the image
-                ImageView imageView = null;
+                ImageView imageView;
                 try {
                     // Convert java.awt.Image to javafx.scene.image.Image
-                    java.awt.Image awtImage =  CommonFunctions.getAWTQRCodeImage(vote);
+                    java.awt.Image awtImage = CommonFunctions.getAWTQRCodeImage(vote);
                     BufferedImage bImage = new BufferedImage(awtImage.getWidth(null), awtImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                     bImage.getGraphics().drawImage(awtImage, 0, 0, null);
                     javafx.scene.image.Image fxImage = SwingFXUtils.toFXImage(bImage, null);
@@ -117,7 +105,7 @@ public class MainController {
                     System.out.println("Valid ballot submitted");
                     submitVote(vote);
                     deactivateButton(currentPage);
-                    openPage(currentPage+1);
+                    openPage(currentPage + 1);
                 }
             } else {
                 // Show the error alert
@@ -133,6 +121,11 @@ public class MainController {
         openPage(0);
     }
 
+    /**
+     * Deactivates button with given page number when user submits a vote for that page.
+     *
+     * @param page number of page for which button should be deactivated
+     */
     private void deactivateButton(Integer page) {
         switch (page) {
             case 1 -> btnPage1.setDisable(true);
@@ -142,6 +135,13 @@ public class MainController {
         }
     }
 
+    /**
+     * Opens page with given number and sets innerGridPane to the page's GridPane.
+     * Visible buttons are set to visible or invisible depending on the page number.
+     * Page 0 is instructions page, so buttons are invisible.
+     *
+     * @param page number of page to be opened
+     */
     private void openPage(Integer page) {
         if (page == 0) {
             btnSubmitInvalid.setVisible(false);
@@ -151,18 +151,8 @@ public class MainController {
             btnSubmit.setVisible(true);
         }
         currentPage = page;
-        innerGridPane=CommonFunctions.getGridPaneFromFXML(ElectionApp.class.getResource("page" + page + ".fxml"));
+        innerGridPane = CommonFunctions.getGridPaneFromFXML(ElectionApp.class.getResource("page" + page + ".fxml"));
         scrollPane.setContent(innerGridPane);
-    }
-
-    /**
-     * Elections can have multiple ballots. This method opens the next ballot.
-     */
-    private void openNextPage() {
-        // get the current stage from the button that was clicked
-        Stage currentStage = (Stage) btnSubmit.getScene().getWindow();
-        currentPage++; // on button next click, increment the current page and open the next page
-        CommonFunctions.switchToNewScene(ElectionApp.class.getResource("mainBallot" + currentPage + ".fxml"), currentStage);
     }
 
     /**

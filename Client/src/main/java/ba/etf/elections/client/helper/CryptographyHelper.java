@@ -32,6 +32,11 @@ public class CryptographyHelper{
         return macHash.equals(hmacSHA256Value);
     }
 
+    /**
+     * Converts mac bytes to characters
+     * @param bytes Bytes to be converted to hex
+     * @return Hex representation of the bytes
+     */
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {

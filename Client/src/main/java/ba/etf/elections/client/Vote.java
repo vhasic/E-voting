@@ -19,7 +19,7 @@ public class Vote {
 
     public static Vote createInvalidVote() {
         Vote invalidVote = new Vote();
-        invalidVote.getVotedCandidates().add("Invalid");
+        invalidVote.getVotedCandidates().add("Nevažeći");
         return invalidVote;
     }
 

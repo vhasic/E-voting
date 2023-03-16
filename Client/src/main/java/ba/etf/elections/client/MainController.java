@@ -12,6 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import javax.naming.InitialContext;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -161,8 +164,8 @@ public class MainController {
      * @param vote vote to be written to file and printed to PDF
      */
     private void submitVote(Vote vote) {
-        writeVoteToFile(vote);
         try {
+            writeVoteToFile(vote);
             // store PDFs in ./PDFVotes/ folder
             PDFHelper.printToPDF(vote, "." + File.separator + "PDFVotes" + File.separator);
         } catch (Exception e) {
@@ -194,28 +197,17 @@ public class MainController {
      *
      * @param vote vote to be written to file
      */
-    private void writeVoteToFile(Vote vote) {
+    private void writeVoteToFile(Vote vote) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        List<Vote> votes;
 //        String folderPath = "." + File.separator + "JSONVotes" + File.separator;
         String folderPath = "";
         File file = getFile(folderPath + FILES_TO_STORE_VOTES.get(currentPage));
         // read votes from file into a list
-        try {
-            votes = mapper.readValue(file, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
+        List<Vote> votes = mapper.readValue(file, new TypeReference<>() {});
         // append new vote to the list
         votes.add(vote);
         // write new list to the file
-        try {
-            mapper.writeValue(file, votes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mapper.writeValue(file, votes);
     }
 
     /**
@@ -312,3 +304,37 @@ public class MainController {
     }
 
 }
+
+
+//Transactional approach
+//todo Problem with creating transaction
+/*    *//**
+ * Writes vote to file and prints it to PDF. At the end, clears the ballot.
+ * Function uses transactional approach, so eater both writeVoteToFile and printToPDF succeed and then vote is submitted,
+ * or neither of them succeed and vote is not submitted.
+ *
+ * @param vote vote to be written to file and printed to PDF
+ *//*
+    private void submitVote(Vote vote) {
+        UserTransaction transaction = null;
+        try {
+            transaction = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
+            transaction.begin();
+
+            writeVoteToFile(vote);
+            // store PDFs in ./PDFVotes/ folder
+            PDFHelper.printToPDF(vote, "." + File.separator + "PDFVotes" + File.separator);
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                try {
+                    transaction.rollback();
+                } catch (SystemException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+            System.out.println(e.getMessage());
+        }
+        clearBallot();
+    }*/

@@ -7,18 +7,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.DocumentException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import javax.naming.InitialContext;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -28,25 +31,55 @@ public class MainController {
     private static int currentPage = 0;
     public ScrollPane scrollPane;
     public GridPane innerGridPane; // this name must be exactly the same as the fx:id in the FXML file
+    public HBox pageNumbersHBox;
     public Button btnSubmit;
     public Button btnSubmitInvalid;
-    public Button btnPage0;
-    public Button btnPage1;
-    public Button btnPage2;
-    public Button btnPage3;
-    public Button btnPage4;
+    public Button btnOpenNewBallot;
+    public ArrayList<Button> btnPageList = new ArrayList<>();
 
     @FXML
     protected void initialize() {
-        btnPage0.setOnAction(actionEvent -> openPage(0));
-        btnPage1.setOnAction(actionEvent -> openPage(1));
-        btnPage2.setOnAction(actionEvent -> openPage(2));
-        btnPage3.setOnAction(actionEvent -> openPage(3));
-        btnPage4.setOnAction(actionEvent -> openPage(4));
+        // at beginning, nw ballot is opened so make btnOpenNewBallot invisible
+        btnOpenNewBallot.setVisible(false);
+
+        bindPageButtonsToFxId();
+
+        btnOpenNewBallot.setOnAction(actionEvent -> {
+            // request password in new window
+            try {
+                FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("confirmation.fxml"));
+                ConfirmationController ctrl = new ConfirmationController();
+                loader.setController(ctrl);
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Confirm action");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.show();
+                stage.setAlwaysOnTop(true);
+
+                // if the action was confirmed in the new window (stage is closed), open new ballot
+                stage.setOnHidden(event -> {
+                    if (ctrl.isActionConfirmed()) {
+                        prepareNewBallot();
+                        btnOpenNewBallot.setVisible(false);
+                        openPage(0);
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // setOnAction(actionEvent -> openPage(i)) for each button in btnPage
+        for (int i = 0; i < btnPageList.size(); i++) {
+            int finalI = i;
+            btnPageList.get(i).setOnAction(actionEvent -> openPage(finalI));
+        }
 
         btnSubmitInvalid.setOnAction(actionEvent -> {
             // Wait for the user to press the OK button
-            Alert alert = createAlert("Obavještenje",
+            Alert alert = CommonFunctions.createAlert("Obavještenje",
                     "Jeste li sigurni da želite predati nevažeći glasački listić?",
                     "Molimo da potvrdite da želite predati nevažeći glasački listić.",
                     Alert.AlertType.CONFIRMATION);
@@ -58,8 +91,12 @@ public class MainController {
                 vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                 submitVote(vote);
 
-                deactivateButton(currentPage);
+                setPageButtonVisibility(currentPage, true);
                 openPage(currentPage + 1);
+                // if all pages are disabled, then member of voting committee has to enable new ballot
+                if (allPageButtonsDisabled()) {
+                    finishBallotCasting();
+                }
             }
 
         });
@@ -69,12 +106,11 @@ public class MainController {
                 Vote vote = getVotedCandidates();
                 vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
 
+                // Show exact vote representation that is printed to pdf to ask user to confirm it
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.getDialogPane().setStyle("-fx-font-size: 18px;"); // set font size of alert dialog
                 alert.setTitle("Obavještenje");
                 alert.setHeaderText("Jeste li sigurni da želite predati glasački listić?");
-
-
                 // Create a GridPane to hold the text and image
                 GridPane grid = new GridPane();
                 // Create a label for the text
@@ -101,41 +137,80 @@ public class MainController {
                 // Set the grid as the content for the dialog pane
                 alert.getDialogPane().setContent(grid);
 
-
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     System.out.println("Valid ballot submitted");
                     submitVote(vote);
-                    deactivateButton(currentPage);
+                    setPageButtonVisibility(currentPage, true);
                     openPage(currentPage + 1);
+                    // if all pages are disabled, then member of voting committee has to enable new ballot
+                    if (allPageButtonsDisabled()) {
+                        finishBallotCasting();
+                    }
                 }
             } else {
                 // Show the error alert
-                Alert alert = createAlert("Greška",
+                Alert alert = CommonFunctions.createAlert("Greška",
                         "Nevalidno popunjen glasački listić",
-                        "Označite samo jednu političku stranku,\nkoaliciju ili nezavisnog kandidata \nili onoliko kandidata koliko želite\n unutar jednog okvira",
+                        """
+                                Označite samo jednu političku stranku,
+                                koaliciju ili nezavisnog kandidata
+                                ili onoliko kandidata koliko želite
+                                 unutar jedne stranke.""",
                         Alert.AlertType.ERROR);
                 alert.showAndWait();
             }
         });
 
-        // at beginning open page 0
         openPage(0);
+    }
+
+    /**
+     * Binds page buttons to their fx:id.
+     */
+    private void bindPageButtonsToFxId() {
+        int i = 0;
+        while (getClass().getResource("page" + i + ".fxml") != null) {
+            Button button = (Button) pageNumbersHBox.lookup("#btnPage" + i);
+            btnPageList.add(button);
+            i++;
+        }
+    }
+
+    private void prepareNewBallot() {
+        // enable all buttons for new ballot
+        for (int i = 0; i < btnPageList.size(); i++) {
+            setPageButtonVisibility(i, false);
+        }
+        btnOpenNewBallot.setVisible(false);
+        openPage(0);
+    }
+
+    private void finishBallotCasting() {
+        btnOpenNewBallot.setVisible(true);
+        btnSubmitInvalid.setVisible(false);
+        btnSubmit.setVisible(false);
+        btnPageList.get(0).setDisable(true);
+    }
+
+    private Boolean allPageButtonsDisabled() {
+        for (int i = 1; i < btnPageList.size(); i++) {
+            if (!btnPageList.get(i).isDisabled()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
      * Deactivates button with given page number when user submits a vote for that page.
      *
-     * @param page number of page for which button should be deactivated
+     * @param page     number of page for which button should be deactivated
+     * @param disabled true if button should be disabled, false if button should not be disabled
      */
-    private void deactivateButton(Integer page) {
-        switch (page) {
-            case 1 -> btnPage1.setDisable(true);
-            case 2 -> btnPage2.setDisable(true);
-            case 3 -> btnPage3.setDisable(true);
-            case 4 -> btnPage4.setDisable(true);
-        }
+    private void setPageButtonVisibility(Integer page, boolean disabled) {
+        btnPageList.get(page).setDisable(disabled);
     }
 
     /**
@@ -175,24 +250,6 @@ public class MainController {
     }
 
     /**
-     * Creates an alert dialog with the given parameters
-     *
-     * @param title     title of the alert dialog
-     * @param header    header of the alert dialog
-     * @param content   content of the alert dialog
-     * @param alertType type of the alert dialog
-     * @return alert dialog
-     */
-    private Alert createAlert(String title, String header, String content, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.getDialogPane().setStyle("-fx-font-size: 18px;"); // set font size of alert dialog
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        return alert;
-    }
-
-    /**
      * Writes the vote to file as one object of JSON array format
      *
      * @param vote vote to be written to file
@@ -203,7 +260,8 @@ public class MainController {
         String folderPath = "";
         File file = getFile(folderPath + FILES_TO_STORE_VOTES.get(currentPage));
         // read votes from file into a list
-        List<Vote> votes = mapper.readValue(file, new TypeReference<>() {});
+        List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
+        });
         // append new vote to the list
         votes.add(vote);
         // write new list to the file

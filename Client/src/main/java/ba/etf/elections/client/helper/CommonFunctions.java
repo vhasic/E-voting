@@ -1,16 +1,35 @@
 package ba.etf.elections.client.helper;
 
+import ba.etf.elections.client.ConfirmationController;
+import ba.etf.elections.client.ElectionApp;
 import ba.etf.elections.client.Vote;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.BarcodeQRCode;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class CommonFunctions {
+    public static Stage createConfirmationStage(ConfirmationController ctrl) throws IOException {
+        FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("confirmation.fxml"));
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Confirm action");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+        stage.setAlwaysOnTop(true);
+        return stage;
+    }
+
     /**
      * Creates an alert dialog with the given parameters
      *

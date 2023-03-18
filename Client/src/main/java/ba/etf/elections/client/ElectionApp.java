@@ -21,7 +21,14 @@ public class ElectionApp extends Application {
 //        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
+//        primaryStage.setAlwaysOnTop(true);
         primaryStage.setResizable(true);
+
+//        // custom minimize and closing (request password)
+//        primaryStage.setOnHiding(event -> {
+//
+////            event.consume(); // Prevent default behavior
+//        });
     }
 
     public static void main(String[] args) {

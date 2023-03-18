@@ -7,9 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.DocumentException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -22,12 +19,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class MainController {
-    private static final List<String> FILES_TO_STORE_VOTES = Arrays.asList("Votes_Predstavnicki_Dom.json", "Votes_Skupstina.json");
     private static int currentPage = 0;
     public ScrollPane scrollPane;
     public GridPane innerGridPane; // this name must be exactly the same as the fx:id in the FXML file
@@ -42,21 +37,13 @@ public class MainController {
         // at beginning, nw ballot is opened so make btnOpenNewBallot invisible
         btnOpenNewBallot.setVisible(false);
 
-        bindPageButtonsToFxId();
+        bindPageButtons();
 
         btnOpenNewBallot.setOnAction(actionEvent -> {
             // request password in new window
             try {
-                FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("confirmation.fxml"));
                 ConfirmationController ctrl = new ConfirmationController();
-                loader.setController(ctrl);
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setTitle("Confirm action");
-                stage.setResizable(false);
-                stage.setScene(new Scene(root));
-                stage.show();
-                stage.setAlwaysOnTop(true);
+                Stage stage = CommonFunctions.createConfirmationStage(ctrl);
 
                 // if the action was confirmed in the new window (stage is closed), open new ballot
                 stage.setOnHidden(event -> {
@@ -167,17 +154,34 @@ public class MainController {
     }
 
     /**
-     * Binds page buttons to their fx:id.
+     * Creates buttons for each page and adds them to pageNumbersHBox and btnPageList.
      */
-    private void bindPageButtonsToFxId() {
+    private void bindPageButtons() {
         int i = 0;
+        // clear all children of pageNumbersHBox
+        pageNumbersHBox.getChildren().clear();
         while (getClass().getResource("page" + i + ".fxml") != null) {
-            Button button = (Button) pageNumbersHBox.lookup("#btnPage" + i);
+            // create new button with text i for each page
+            Button button = new Button(Integer.toString(i));
+            // set fx:id for button to "#btnPage" + i
+            button.setId("btnPage" + i);
+            // set font size to 18px
+            button.setStyle("-fx-font-size: 18px;");
+            // add button as child to pageNumbersHBox
+            pageNumbersHBox.getChildren().add(button);
+
+//            Button button = (Button) pageNumbersHBox.lookup("#btnPage" + i); // find button with fx:id "#btnPage" + i
+            // add button to list of page buttons btnPageList
             btnPageList.add(button);
             i++;
         }
+        // set spacing between page buttons to 10px
+        pageNumbersHBox.setSpacing(10);
     }
 
+    /**
+     * When enabling new vote is confirmed in new window, this method is called to prepare new ballot.
+     */
     private void prepareNewBallot() {
         // enable all buttons for new ballot
         for (int i = 0; i < btnPageList.size(); i++) {
@@ -187,6 +191,9 @@ public class MainController {
         openPage(0);
     }
 
+    /**
+     * When all btnPages are disabled (voter finished voting), this method is called.
+     */
     private void finishBallotCasting() {
         btnOpenNewBallot.setVisible(true);
         btnSubmitInvalid.setVisible(false);
@@ -194,6 +201,10 @@ public class MainController {
         btnPageList.get(0).setDisable(true);
     }
 
+    /**
+     * Checks if all page buttons are disabled. After this function finishBallotCasting() is called.
+     * @return true if all page buttons are disabled, false otherwise
+     */
     private Boolean allPageButtonsDisabled() {
         for (int i = 1; i < btnPageList.size(); i++) {
             if (!btnPageList.get(i).isDisabled()) {
@@ -258,7 +269,7 @@ public class MainController {
         ObjectMapper mapper = new ObjectMapper();
 //        String folderPath = "." + File.separator + "JSONVotes" + File.separator;
         String folderPath = "";
-        File file = getFile(folderPath + FILES_TO_STORE_VOTES.get(currentPage));
+        File file = getFile(folderPath + "votes_page"+currentPage);
         // read votes from file into a list
         List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
         });

@@ -35,3 +35,4 @@ public class ElectionApp extends Application {
         launch();
     }
 }
+// todo at the end of development, use jDeploy to deploy app to npm or github artifacts: https://www.jdeploy.com/docs/manual/#_getting_started

@@ -26,7 +26,7 @@ public class CommonFunctions {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-        stage.setAlwaysOnTop(true);
+//        stage.setAlwaysOnTop(true);
         return stage;
     }
 

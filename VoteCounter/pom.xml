@@ -29,4 +29,6 @@
         </dependency>
     </dependencies>
 
+<!--    package to jar using Intellij Build > Artifacts > VoteCounter > Rebuild-->
+
 </project>

@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class VoteCounter {
     public static void main(String[] args) {
@@ -20,8 +21,9 @@ public class VoteCounter {
 //            CountVotes(folderPath + "Votes_Predstavnicki_Dom.json");
 
             // ask user to input path to JSON file with votes
+            Scanner scanner = new Scanner(System.in);  // Create a Scanner object
             System.out.println("Enter path to JSON file with votes:");
-            String path = System.console().readLine();
+            String path = scanner.nextLine();  // Read user input
             CountVotes(path);
         } catch (Exception e) {
             System.out.println(e.getMessage());

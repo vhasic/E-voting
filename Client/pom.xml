@@ -16,6 +16,29 @@
     </properties>
 
     <dependencies>
+<!--        cross-platform fat jar-->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.2</version>
+            <classifier>win</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.2</version>
+            <classifier>linux</classifier>
+        </dependency>
+
+<!--        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.2</version>
+            <classifier>mac</classifier>
+        </dependency>-->
+
+<!--        -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -144,7 +167,6 @@
                     </execution>
                 </executions>
             </plugin>
-<!--            todo JavaFX 11+ Cross-platform Deployment: https://www.youtube.com/watch?v=w_PsCNqqcE4&t=152s-->
 
         </plugins>
     </build>

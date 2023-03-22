@@ -1,5 +1,6 @@
 package ba.etf.elections.client;
 
+import ba.etf.elections.client.helper.CommonFunctions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,17 +19,42 @@ public class ElectionApp extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("Izbori 2022");
         Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
-//        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
-//        primaryStage.setAlwaysOnTop(true);
+        primaryStage.setFullScreen(false);
         primaryStage.setResizable(true);
-
-//        // custom minimize and closing (request password)
-//        primaryStage.setOnHiding(event -> {
-//
-////            event.consume(); // Prevent default behavior
+//        primaryStage.setFullScreen(true);
+//        primaryStage.setResizable(false);
+//        // forbid exiting fullscreen
+//        primaryStage.fullScreenProperty().addListener((observable, oldValue, newValue) -> {
+//            if (!newValue) {
+//                primaryStage.setFullScreen(true);
+//            }
 //        });
+        // forbid minimizing
+        primaryStage.iconifiedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                primaryStage.setIconified(false);
+            }
+        });
+
+        // custom minimize and closing (request password)
+        primaryStage.setOnCloseRequest(event -> {
+            event.consume(); // Prevent default behavior
+            ConfirmationController confirmationController = new ConfirmationController();
+            Stage stage = null;
+            try {
+                stage = CommonFunctions.createConfirmationStage(confirmationController);
+                // if the action was confirmed in the new window (stage is closed), open new ballot
+                stage.setOnHidden(e -> {
+                    if (confirmationController.isActionConfirmed()) {
+                        primaryStage.close();
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public static void main(String[] args) {

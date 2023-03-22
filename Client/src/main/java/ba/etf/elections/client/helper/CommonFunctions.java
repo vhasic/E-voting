@@ -96,3 +96,23 @@ public class CommonFunctions {
         return qrCode.createAwtImage(java.awt.Color.BLACK, java.awt.Color.WHITE);
     }
 }
+
+/*
+Here is an example code snippet that shows how to generate a QR Code from a String and show it in JavaFX 1:
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+
+// ...
+
+ByteArrayOutputStream out = QRCode.from("LT Jerry0022").to(ImageType.PNG).withSize(200, 200).stream();
+ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+
+// SHOW QR CODE
+BorderPane root = new BorderPane();
+Image image = new Image(in);
+ImageView view = new ImageView(image);
+ */

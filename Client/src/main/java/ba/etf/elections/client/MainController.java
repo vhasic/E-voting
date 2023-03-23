@@ -253,10 +253,13 @@ public class MainController {
         try {
             writeVoteToFile(vote);
             // store PDFs in ./PDFVotes/ folder
-            String directoryPath = "." + File.separator + "PDFVotes" + File.separator;
+            String directoryPath = System.getProperty("user.dir") + File.separator + "PDFVotes" + File.separator;
             // create directory if not exists
             File directory = new File(directoryPath);
-            PDFHelper.printToPDF(vote, directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            PDFHelper.printToPDF(vote, directory.getPath() + File.separator);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -271,10 +274,13 @@ public class MainController {
     private void writeVoteToFile(Vote vote) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 //        String folderPath = "";
-        String folderPath = "." + File.separator + "JSONVotes" + File.separator;
+        String folderPath = System.getProperty("user.dir") + File.separator + "JSONVotes" + File.separator;
         // create directory if not exists
         File directory = new File(folderPath);
-        File file = getFile(folderPath + "votes_page"+currentPage);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File file = getFile(directory.getPath() + File.separator +  "votes_page"+currentPage+".json");
         // read votes from file into a list
         List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
         });

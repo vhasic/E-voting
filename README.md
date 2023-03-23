@@ -6,7 +6,7 @@ This is voting app for country elections in Bosnia and Herzegowina. It is writte
 - jre 17 or newer must be installed on PC
 - The following two environment variables must be added on the computer: 
 1. key={generated secret for MAC hash and ByCript password hasing. Must be in form of ByCript salt}
-2. systemPassword={ByCript hash of password that is requested when closing app or opening new clear ballot}
+2. systemPassword={ByCript hash of password}
 - E-voting app can bu run by double clicking it or by running in terminal: java - jar E-voting.jar
 - VoteCounting app can be run in terminal by typeing: java -jar VoteCounter.jar. 
 
@@ -16,6 +16,7 @@ This is GUI app for vote casting. It is built to enable secure voting on local m
 This application is intended to be installed on pre-built virtual machines that will be used at polling stations.
 These machines should not be connected to the Internet for security reasons.
 The application is cross platform and can be run on Windows, GNU/Linux and MacOS.
+App  requests password when closing it or opening new clear ballot.
 
 SHA256 for checking application integrity is: ...
 

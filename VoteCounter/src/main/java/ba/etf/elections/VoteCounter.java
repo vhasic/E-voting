@@ -1,7 +1,5 @@
 package ba.etf.elections;
 
-import ba.etf.elections.client.Vote;
-import ba.etf.elections.client.helper.CryptographyHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,12 +10,21 @@ import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
-// for now this project is dependant on Client project, todo: make it independent
 public class VoteCounter {
     public static void main(String[] args) {
         try {
-            CountVotes(System.getenv("pathToJsonVotesFile"));
+//            CountVotes(System.getenv("pathToJsonVotesFile"));
+//            String folderPath = "." + File.separator + "JSONVotes" + File.separator;
+//            String folderPath = "";
+//            CountVotes(folderPath + "Votes_Predstavnicki_Dom.json");
+
+            // ask user to input path to JSON file with votes
+            Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+            System.out.println("Enter path to JSON file with votes:");
+            String path = scanner.nextLine();  // Read user input
+            CountVotes(path);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -33,7 +40,7 @@ public class VoteCounter {
 
         for (Vote vote: votes) {
             Boolean macHashMatch = CryptographyHelper.validateMACHash(vote.getVotedCandidates().toString(), vote.getVoteMacHash());
-            if (macHashMatch == false){
+            if (!macHashMatch){
                 throw new RuntimeException("MAC hash does not match. Vote integrity compromised.");
             }
             for (String candidate: vote.getVotedCandidates()) {

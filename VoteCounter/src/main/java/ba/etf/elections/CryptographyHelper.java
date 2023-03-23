@@ -1,4 +1,4 @@
-package ba.etf.elections.client.helper;
+package ba.etf.elections;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

@@ -1,6 +1,5 @@
-package ba.etf.elections.client;
+package ba.etf.elections;
 
-import ba.etf.elections.client.helper.CryptographyHelper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

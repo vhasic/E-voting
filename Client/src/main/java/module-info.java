@@ -8,7 +8,6 @@ module ba.etf.elections.client {
     requires com.fasterxml.jackson.databind;
     requires itextpdf;
     requires javafx.swing;
-    requires java.transaction;
     requires java.naming;
     requires jbcrypt;
 

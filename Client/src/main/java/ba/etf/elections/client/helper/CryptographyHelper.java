@@ -13,7 +13,7 @@ public class CryptographyHelper{
      * @return MAC hash
      */
     public static String createMACHash(String data) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = System.getenv("key");
+        String key = CommonFunctions.getEnvironmentVariable("key");
         String algorithm = "HmacSHA256";
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), algorithm);
         Mac mac = Mac.getInstance(algorithm);

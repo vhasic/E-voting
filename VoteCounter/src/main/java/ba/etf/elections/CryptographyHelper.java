@@ -7,13 +7,26 @@ import java.security.NoSuchAlgorithmException;
 
 public class CryptographyHelper{
     /**
+     * Reads the environment variable with the given name or if it doesn't exist, reads the system property with the given name
+     * @param name name of the environment variable or system property
+     * @return value of the environment variable or system property
+     */
+    public static String getEnvironmentVariable(String name) {
+        String value = System.getenv(name); // this gets environment variable "systemPassword" set like this: export systemPassword=<password_value>
+        if (value == null) {
+            value = System.getProperty(name); // this gets system property "systemPassword" set like this: java -jar Client.jar -DsystemPassword=<password_value>
+        }
+        return value;
+    }
+
+    /**
      * Creates MAC hash for the vote
      * <a href="https://www.baeldung.com/java-hmac">Link</a>
      * @param data Data to be hashed
      * @return MAC hash
      */
     public static String createMACHash(String data) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = System.getenv("key");
+        String key = getEnvironmentVariable("key");
         String algorithm = "HmacSHA256";
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), algorithm);
         Mac mac = Mac.getInstance(algorithm);

@@ -17,6 +17,25 @@ import java.io.IOException;
 import java.net.URL;
 
 public class CommonFunctions {
+    /**
+     * Reads the environment variable with the given name or if it doesn't exist, reads the system property with the given name
+     * @param name name of the environment variable or system property
+     * @return value of the environment variable or system property
+     */
+    public static String getEnvironmentVariable(String name) {
+        String value = System.getenv(name); // this gets environment variable "systemPassword" set like this: export systemPassword=<password_value>
+        if (value == null) {
+            value = System.getProperty(name); // this gets system property "systemPassword" set like this: java -jar Client.jar -DsystemPassword=<password_value>
+        }
+        return value;
+    }
+
+    /**
+     * Creates a stage for the confirmation dialog
+     * @param ctrl confirmation controller
+     * @return stage
+     * @throws IOException if confirmation.fxml cannot be loaded
+     */
     public static Stage createConfirmationStage(ConfirmationController ctrl) throws IOException {
         FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("confirmation.fxml"));
         loader.setController(ctrl);

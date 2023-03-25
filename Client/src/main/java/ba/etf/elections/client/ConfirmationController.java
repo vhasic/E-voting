@@ -17,7 +17,7 @@ public class ConfirmationController {
     protected void initialize() {
         buttonConfirm.setOnAction(event -> {
             String password = passwordField.getText();
-            String systemPassword = System.getenv("systemPassword");
+            String systemPassword = CommonFunctions.getEnvironmentVariable("systemPassword");
 
             // Compare input password with the hashed password given in environment variable
             if (BCrypt.checkpw(password, systemPassword)) {

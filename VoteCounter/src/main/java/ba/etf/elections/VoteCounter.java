@@ -15,11 +15,6 @@ import java.util.Scanner;
 public class VoteCounter {
     public static void main(String[] args) {
         try {
-//            CountVotes(System.getenv("pathToJsonVotesFile"));
-//            String folderPath = "." + File.separator + "JSONVotes" + File.separator;
-//            String folderPath = "";
-//            CountVotes(folderPath + "Votes_Predstavnicki_Dom.json");
-
             // ask user to input path to JSON file with votes
             Scanner scanner = new Scanner(System.in);  // Create a Scanner object
             System.out.println("Enter path to JSON file with votes:");

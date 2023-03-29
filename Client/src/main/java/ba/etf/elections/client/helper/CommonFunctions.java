@@ -14,9 +14,33 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
+
 public class CommonFunctions {
+
+    /**
+     * Get resource from the resourcePath environment variable if it is set or else get it from the resources folder
+     * @param resourceName name of the resource
+     * @return URL of the resource
+     */
+    public static URL getResource (String resourceName){
+        String resourcePath = getEnvironmentVariable("resourcePath"); // i.e. .\resources\
+        URL url = null;
+        if (resourcePath==null){ // if resourcePath is not set, get resource from resources folder
+            url = ElectionApp.class.getResource(resourceName);
+        }
+        else{ // if resourcePath is set, get resource from the given path
+            try {
+                url = new URL(resourcePath + resourceName);
+            } catch (MalformedURLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return url;
+    }
+
     /**
      * Reads the environment variable with the given name or if it doesn't exist, reads the system property with the given name
      * @param name name of the environment variable or system property

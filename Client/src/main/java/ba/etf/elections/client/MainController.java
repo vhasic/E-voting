@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 public class MainController {
     private static int currentPage = 0;
     public ScrollPane scrollPane;
@@ -160,7 +161,7 @@ public class MainController {
         int i = 0;
         // clear all children of pageNumbersHBox
         pageNumbersHBox.getChildren().clear();
-        while (getClass().getResource("page" + i + ".fxml") != null) {
+        while (CommonFunctions.getResource("page" + i + ".fxml") != null) {
             // create new button with text i for each page
             Button button = new Button(Integer.toString(i));
             // set fx:id for button to "#btnPage" + i
@@ -240,7 +241,7 @@ public class MainController {
             btnSubmit.setVisible(true);
         }
         currentPage = page;
-        innerGridPane = CommonFunctions.getGridPaneFromFXML(ElectionApp.class.getResource("page" + page + ".fxml"));
+        innerGridPane = CommonFunctions.getGridPaneFromFXML(CommonFunctions.getResource("page" + page + ".fxml"));
         scrollPane.setContent(innerGridPane);
     }
 

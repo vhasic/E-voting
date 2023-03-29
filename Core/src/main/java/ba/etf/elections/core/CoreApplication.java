@@ -18,6 +18,7 @@ public class CoreApplication {
         System.out.println("Unesite naslov glasačkog listića:");
         String ballotTitle = scanner.nextLine();  // Read user input
 //        String ballotTitle = "ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11";
+//        "OPĆINSKO VIJEĆE"
 
         System.out.println("Unesite broj kolona za prikaz na glasačkom listiću:");
         int numberOfColumns = scanner.nextInt();  // Read user input
@@ -31,8 +32,8 @@ public class CoreApplication {
 
         System.out.println("Unesite putanju do .fxml datoteke u koju želite da se upišu podaci:");
         String outputFilename = scanner.nextLine();  // Read user input
-//        String outputFilename = "C:\\Users\\Vahidin\\IdeaProjects\\Elections\\Client\\src\\main\\resources\\ba\\etf\\elections\\client\\page2.fxml";
-
+//        String outputFilename = "C:\\Users\\Vahidin\\IdeaProjects\\Elections\\Client\\src\\main\\resources\\ba\\etf\\elections\\client\\page1.fxml";
+//        "C:\\Users\\Vahidin\\IdeaProjects\\Elections\\Core\\src\\main\\java\\ba\\etf\\elections\\core\\ballots\\page1.fxml";
 
         try {
             List<PartyCandidates> partyCandidatesList = GetPartiesCandidates(inputFilename);
@@ -99,7 +100,7 @@ public class CoreApplication {
                 "                  <Font name=\"System Bold\" size=\"20.0\" />\n" +
                 "               </font>\n" +
                 "               <VBox.margin>\n" +
-                "                  <Insets right=\"5.0\" top=\"5.0\" />\n" +
+                "                  <Insets right=\"5.0\" top=\"10.0\" />\n" +
                 "               </VBox.margin>\n" +
                 "            </RadioButton>\n");
 
@@ -109,7 +110,7 @@ public class CoreApplication {
                     "                  <Font size=\"18.0\" />\n" +
                     "               </font>\n" +
                     "               <VBox.margin>\n" +
-                    "                  <Insets right=\"10.0\" top=\"10.0\" />\n" +
+                    "                  <Insets left=\"10.0\" top=\"10.0\" />\n" +
                     "               </VBox.margin>\n" +
                     "            </CheckBox>\n");
 
@@ -128,7 +129,7 @@ public class CoreApplication {
                 "         <children>\n" +
                 "            <Label alignment=\"CENTER\" text=\"" + ballotTitle + "\">\n" +
                 "               <font>\n" +
-                "                  <Font name=\"System Bold\" size=\"14.0\" />\n" +
+                "                  <Font name=\"System Bold\" size=\"18.0\" />\n" +
                 "               </font>\n" +
                 "               <VBox.margin>\n" +
                 "                  <Insets bottom=\"10.0\" left=\"10.0\" right=\"10.0\" top=\"10.0\" />\n" +

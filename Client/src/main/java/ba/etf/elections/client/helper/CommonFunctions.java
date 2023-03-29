@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -42,15 +43,17 @@ public class CommonFunctions {
      * @return URL of the resource
      */
     public static URL getResource (String resourceName){
-        String resourcePath = getEnvironmentVariable("resourcePath"); // i.e. .\resources\
+        String resourcePath = getEnvironmentVariable("resourcePath"); // i.e. resourcePath=C:\Users\Vahidin\IdeaProjects\Elections\Core\src\main\java\ba\etf\elections\core\ballots\
         URL url = null;
         if (resourcePath==null){ // if resourcePath is not set, get resource from resources folder
             url = ElectionApp.class.getResource(resourceName);
         }
         else{ // if resourcePath is set, get resource from the given path
             try {
-                url = new URL(resourcePath + resourceName);
-            } catch (MalformedURLException e) {
+                File file = new File(resourcePath + resourceName);
+                if (file.exists())
+                    url = file.toURI().toURL();
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }

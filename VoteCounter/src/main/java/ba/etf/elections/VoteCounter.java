@@ -17,7 +17,7 @@ public class VoteCounter {
         try {
             // ask user to input path to JSON file with votes
             Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-            System.out.println("Enter path to JSON file with votes:");
+            System.out.println("Unesite putanju do .json datoteke u kojoj se nalaze glasovi:");
             String path = scanner.nextLine();  // Read user input
             CountVotes(path);
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class VoteCounter {
         for (Vote vote: votes) {
             Boolean macHashMatch = CryptographyHelper.validateMACHash(vote.getVotedCandidates().toString(), vote.getVoteMacHash());
             if (!macHashMatch){
-                throw new RuntimeException("MAC hash does not match. Vote integrity compromised.");
+                throw new RuntimeException("MAC hash se ne podudara. Integritet glasova je kompromitovan!");
             }
             for (String candidate: vote.getVotedCandidates()) {
                 if (voteCountHashMap.containsKey(candidate)) {

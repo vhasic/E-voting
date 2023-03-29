@@ -24,6 +24,18 @@
       <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
+      <VBox alignment="CENTER" GridPane.columnSpan="2147483647" GridPane.rowIndex="0" GridPane.columnIndex="0">
+         <children>
+            <Label alignment="CENTER" text="ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
       <VBox prefWidth="400.0" GridPane.rowIndex="1">
          <children>
             <RadioButton mnemonicParsing="false" text="SBD">
@@ -601,18 +613,6 @@
          <padding>
             <Insets left="20.0" />
          </padding>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnSpan="2147483647">
-         <children>
-            <Label alignment="CENTER" text="ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-         </children>
       </VBox>
    </children>
 </GridPane>

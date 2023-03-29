@@ -10,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +21,20 @@ import java.net.URL;
 
 
 public class CommonFunctions {
+    /**
+     * Returns keyword for the given ballot
+     * @param fxmlUrl URL of the ballot fxml file
+     * @return keyword for the given ballot
+     */
+    public static String getBallotTitleKeyword(URL fxmlUrl) {
+        GridPane gridPane = getGridPaneFromFXML(fxmlUrl);
+        assert gridPane != null;
+        VBox titleVBox = (VBox) gridPane.getChildren().get(0);
+        Label titleLabel = (Label) titleVBox.getChildren().get(0);
+        String title = titleLabel.getText();
+        // return first word of the title. Words are delimited by space or special characters. Words can include š,đ,č,ć,ž
+        return title.split("[\\s\\p{Punct}&&[^šđčćžŠĐČĆŽ]]+")[0];
+    }
 
     /**
      * Get resource from the resourcePath environment variable if it is set or else get it from the resources folder

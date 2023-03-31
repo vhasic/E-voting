@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections.client;
 
 import ba.etf.elections.client.helper.CommonFunctions;
@@ -38,8 +42,10 @@ public class MainController {
         // at beginning, nw ballot is opened so make btnOpenNewBallot invisible
         btnOpenNewBallot.setVisible(false);
 
+        // create button for each page (ballot) and add it to btnPageList
         bindPageButtons();
 
+        // when one voter finishes voting, new ballot can be opened only by entering password
         btnOpenNewBallot.setOnAction(actionEvent -> {
             // request password in new window
             try {
@@ -59,7 +65,7 @@ public class MainController {
             }
         });
 
-        // setOnAction(actionEvent -> openPage(i)) for each button in btnPage
+        // setting page buttons to open corresponding page when clicked
         for (int i = 0; i < btnPageList.size(); i++) {
             int finalI = i;
             btnPageList.get(i).setOnAction(actionEvent -> openPage(finalI));
@@ -73,6 +79,7 @@ public class MainController {
                     Alert.AlertType.CONFIRMATION);
             Optional<ButtonType> result = alert.showAndWait();
 
+            // if user confirms, submit invalid ballot
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 System.out.println("Invalid ballot submitted");
                 Vote vote = Vote.createInvalidVote();
@@ -124,9 +131,9 @@ public class MainController {
                 grid.setVgap(10);
                 // Set the grid as the content for the dialog pane
                 alert.getDialogPane().setContent(grid);
-
                 Optional<ButtonType> result = alert.showAndWait();
 
+                // wait for the user to confirm the vote
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     System.out.println("Valid ballot submitted");
                     submitVote(vote);
@@ -151,6 +158,7 @@ public class MainController {
             }
         });
 
+        // at beginning, open first page with voting instructions
         openPage(0);
     }
 
@@ -162,7 +170,7 @@ public class MainController {
         // clear all children of pageNumbersHBox
         pageNumbersHBox.getChildren().clear();
         while (CommonFunctions.getResource("page" + i + ".fxml") != null) {
-            // create new button with text i for each page
+            // create new button with text for each page
 //            Button button = new Button(Integer.toString(i));
             Button button = new Button(CommonFunctions.getBallotTitleKeyword(CommonFunctions.getResource("page" + i + ".fxml")));
             // set fx:id for button to "#btnPage" + i
@@ -171,7 +179,6 @@ public class MainController {
             button.setStyle("-fx-font-size: 18px;");
             // add button as child to pageNumbersHBox
             pageNumbersHBox.getChildren().add(button);
-
 //            Button button = (Button) pageNumbersHBox.lookup("#btnPage" + i); // find button with fx:id "#btnPage" + i
             // add button to list of page buttons btnPageList
             btnPageList.add(button);
@@ -205,6 +212,7 @@ public class MainController {
 
     /**
      * Checks if all page buttons are disabled. After this function finishBallotCasting() is called.
+     *
      * @return true if all page buttons are disabled, false otherwise
      */
     private Boolean allPageButtonsDisabled() {
@@ -264,6 +272,7 @@ public class MainController {
             PDFHelper.printToPDF(vote, directory.getPath() + File.separator);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
         clearBallot();
     }
@@ -275,14 +284,13 @@ public class MainController {
      */
     private void writeVoteToFile(Vote vote) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-//        String folderPath = "";
         String folderPath = System.getProperty("user.dir") + File.separator + "JSONVotes" + File.separator;
         // create directory if not exists
         File directory = new File(folderPath);
         if (!directory.exists()) {
             directory.mkdirs();
         }
-        File file = getFile(directory.getPath() + File.separator +  "votes_page"+currentPage+".json");
+        File file = getFile(directory.getPath() + File.separator + "votes_page" + currentPage + ".json");
         // read votes from file into a list
         List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
         });
@@ -386,37 +394,3 @@ public class MainController {
     }
 
 }
-
-
-//Transactional approach
-//todo Problem with creating transaction
-/*    *//**
- * Writes vote to file and prints it to PDF. At the end, clears the ballot.
- * Function uses transactional approach, so eater both writeVoteToFile and printToPDF succeed and then vote is submitted,
- * or neither of them succeed and vote is not submitted.
- *
- * @param vote vote to be written to file and printed to PDF
- *//*
-    private void submitVote(Vote vote) {
-        UserTransaction transaction = null;
-        try {
-            transaction = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
-            transaction.begin();
-
-            writeVoteToFile(vote);
-            // store PDFs in ./PDFVotes/ folder
-            PDFHelper.printToPDF(vote, "." + File.separator + "PDFVotes" + File.separator);
-
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                try {
-                    transaction.rollback();
-                } catch (SystemException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-            System.out.println(e.getMessage());
-        }
-        clearBallot();
-    }*/

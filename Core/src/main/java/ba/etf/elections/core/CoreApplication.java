@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections.core;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -90,9 +94,9 @@ public class CoreApplication {
     }
 
     private static String getBallotContentFxml(PartyCandidates partyCandidates, int row, int column) {
-        StringBuilder s = new StringBuilder("      <VBox layoutX=\"10.0\" layoutY=\"469.0\" prefWidth=\"390.0\" GridPane.columnIndex=\""+column+"\" GridPane.rowIndex=\""+row+"\">\n" +
+        StringBuilder s = new StringBuilder("      <VBox layoutX=\"10.0\" layoutY=\"469.0\" prefWidth=\"390.0\" GridPane.columnIndex=\"" + column + "\" GridPane.rowIndex=\"" + row + "\">\n" +
                 "         <children>\n" +
-                "            <RadioButton mnemonicParsing=\"false\" text=\""+partyCandidates.getPartyName()+"\">\n" +
+                "            <RadioButton mnemonicParsing=\"false\" text=\"" + partyCandidates.getPartyName() + "\">\n" +
                 "               <padding>\n" +
                 "                  <Insets bottom=\"10.0\" />\n" +
                 "               </padding>\n" +
@@ -125,7 +129,7 @@ public class CoreApplication {
     }
 
     private static String getBallotTitleFxml(String ballotTitle) {
-        return  "      <VBox alignment=\"CENTER\" GridPane.rowIndex=\"0\" GridPane.columnIndex=\"0\" GridPane.columnSpan=\"2147483647\">\n" +
+        return "      <VBox alignment=\"CENTER\" GridPane.rowIndex=\"0\" GridPane.columnIndex=\"0\" GridPane.columnSpan=\"2147483647\">\n" +
                 "         <children>\n" +
                 "            <Label alignment=\"CENTER\" text=\"" + ballotTitle + "\">\n" +
                 "               <font>\n" +
@@ -143,7 +147,6 @@ public class CoreApplication {
         File file = new File(inputFilename); // open file that contains parties and candidates as JSON array of objects
         // read objects from file into a list of Java objects
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, new TypeReference<>() {
-        });
+        return mapper.readValue(file, new TypeReference<>() {});
     }
 }

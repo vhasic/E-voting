@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections.client.helper;
 
 import ba.etf.elections.client.Vote;
@@ -26,19 +30,18 @@ public class PDFHelper {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         LocalDateTime now = LocalDateTime.now();
         String pdfFileName = "vote_" + dtf.format(now) + ".pdf";
-        PdfWriter.getInstance(document, new FileOutputStream(directoryPath+pdfFileName));
+        PdfWriter.getInstance(document, new FileOutputStream(directoryPath + pdfFileName));
         document.open();
         // Set font that supports the special characters (č,ć,š,ž,đ)
         // Load font from resources
         InputStream is = PDFHelper.class.getResourceAsStream("/arial/Arial.ttf");
-        // How to create base font from loaded font?
+        // Create base font from loaded font
         BaseFont bf = BaseFont.createFont("Arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, BaseFont.CACHED, is.readAllBytes(), null);
         Font font = new Font(bf, 12);
-        document.add(new Paragraph(formattedVote,font));
+        document.add(new Paragraph(formattedVote, font));
         // appending MAC hash as QR code
         document.add(CommonFunctions.getQRCodeImage(vote));
         document.close();
     }
-
 
 }

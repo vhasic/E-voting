@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections.client.helper;
 
 import ba.etf.elections.client.ConfirmationController;
@@ -17,13 +21,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 
 public class CommonFunctions {
     /**
      * Returns keyword for the given ballot
+     *
      * @param fxmlUrl URL of the ballot fxml file
      * @return keyword for the given ballot
      */
@@ -39,16 +43,16 @@ public class CommonFunctions {
 
     /**
      * Get resource from the resourcePath environment variable if it is set or else get it from the resources folder
+     *
      * @param resourceName name of the resource
      * @return URL of the resource
      */
-    public static URL getResource (String resourceName){
-        String resourcePath = getEnvironmentVariable("resourcePath"); // i.e. resourcePath=C:\Users\Vahidin\IdeaProjects\Elections\Core\src\main\java\ba\etf\elections\core\ballots\
+    public static URL getResource(String resourceName) {
+        String resourcePath = getEnvironmentVariable("resourcePath"); // i.e. resourcePath=C:\Users\User\Desktop\ballots\
         URL url = null;
-        if (resourcePath==null){ // if resourcePath is not set, get resource from resources folder
+        if (resourcePath == null) { // if resourcePath is not set, get resource from resources folder
             url = ElectionApp.class.getResource(resourceName);
-        }
-        else{ // if resourcePath is set, get resource from the given path
+        } else { // if resourcePath is set, get resource from the given path
             try {
                 File file = new File(resourcePath + resourceName);
                 if (file.exists())
@@ -62,6 +66,7 @@ public class CommonFunctions {
 
     /**
      * Reads the environment variable with the given name or if it doesn't exist, reads the system property with the given name
+     *
      * @param name name of the environment variable or system property
      * @return value of the environment variable or system property
      */
@@ -75,6 +80,7 @@ public class CommonFunctions {
 
     /**
      * Creates a stage for the confirmation dialog
+     *
      * @param ctrl confirmation controller
      * @return stage
      * @throws IOException if confirmation.fxml cannot be loaded
@@ -88,7 +94,6 @@ public class CommonFunctions {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-//        stage.setAlwaysOnTop(true);
         return stage;
     }
 
@@ -109,8 +114,10 @@ public class CommonFunctions {
         alert.setContentText(content);
         return alert;
     }
+
     /**
      * Loads GridPane from FXML file and returns it.
+     *
      * @param fxmlURL URL of FXML file
      * @return GridPane from FXML file
      */
@@ -126,6 +133,7 @@ public class CommonFunctions {
 
     /**
      * Formats given vote to string containing all candidates from given vote. Each candidate is on new line.
+     *
      * @param vote Vote to be formatted
      * @return Formatted string containing all candidates from given vote
      */
@@ -158,23 +166,3 @@ public class CommonFunctions {
         return qrCode.createAwtImage(java.awt.Color.BLACK, java.awt.Color.WHITE);
     }
 }
-
-/*
-Here is an example code snippet that shows how to generate a QR Code from a String and show it in JavaFX 1:
-
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-
-// ...
-
-ByteArrayOutputStream out = QRCode.from("LT Jerry0022").to(ImageType.PNG).withSize(200, 200).stream();
-ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
-
-// SHOW QR CODE
-BorderPane root = new BorderPane();
-Image image = new Image(in);
-ImageView view = new ImageView(image);
- */

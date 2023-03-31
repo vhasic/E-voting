@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections.client;
 
 import ba.etf.elections.client.helper.CommonFunctions;
@@ -21,9 +25,9 @@ public class ElectionApp extends Application {
         Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setFullScreen(false);
         primaryStage.setResizable(true);
-//        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreen(false);
 //        primaryStage.setResizable(false);
 //        // forbid exiting fullscreen
 //        primaryStage.fullScreenProperty().addListener((observable, oldValue, newValue) -> {
@@ -61,4 +65,3 @@ public class ElectionApp extends Application {
         launch();
     }
 }
-// todo at the end of development, use jDeploy to deploy app to npm or github artifacts: https://www.jdeploy.com/docs/manual/#_getting_started

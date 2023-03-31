@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -19,26 +23,28 @@ public class VoteCounter {
             Scanner scanner = new Scanner(System.in);  // Create a Scanner object
             System.out.println("Unesite putanju do .json datoteke u kojoj se nalaze glasovi:");
             String path = scanner.nextLine();  // Read user input
-            CountVotes(path);
+            Map<String, Integer> voteCountHashMap = CountVotes(path);
+            printMap(voteCountHashMap);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void CountVotes(String filename) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+    private static Map<String, Integer> CountVotes(String filename) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         File file = new File(filename); // open file that contains votes as JSON array of objects
         // read votes from file into a list of Vote objects
         ObjectMapper mapper = new ObjectMapper();
-        List<Vote> votes = mapper.readValue(file, new TypeReference<>() {});
+        List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
+        });
         // create hash map: name of candidate String and number of votes Integer
         Map<String, Integer> voteCountHashMap = new LinkedHashMap<>();
 
-        for (Vote vote: votes) {
+        for (Vote vote : votes) {
             Boolean macHashMatch = CryptographyHelper.validateMACHash(vote.getVotedCandidates().toString(), vote.getVoteMacHash());
-            if (!macHashMatch){
+            if (!macHashMatch) {
                 throw new RuntimeException("MAC hash se ne podudara. Integritet glasova je kompromitovan!");
             }
-            for (String candidate: vote.getVotedCandidates()) {
+            for (String candidate : vote.getVotedCandidates()) {
                 if (voteCountHashMap.containsKey(candidate)) {
                     voteCountHashMap.put(candidate, voteCountHashMap.get(candidate) + 1);
                 } else {
@@ -53,7 +59,7 @@ public class VoteCounter {
 //                .sorted(Map.Entry.comparingByValue())
 //                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 
-        printMap(voteCountHashMap);
+        return voteCountHashMap;
     }
 
     private static void printMap(Map<String, Integer> map) {

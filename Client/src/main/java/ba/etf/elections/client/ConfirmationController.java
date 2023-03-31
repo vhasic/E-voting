@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. Vahidin Hasić
+ */
+
 package ba.etf.elections.client;
 
 import ba.etf.elections.client.helper.CommonFunctions;
@@ -28,10 +32,7 @@ public class ConfirmationController {
             } else {
                 actionConfirmed = false;
                 // Show the error alert
-                Alert alert = CommonFunctions.createAlert("Greška",
-                        "Unesena je pogrešna lozinka",
-                        "Unesite ispravnu lozinku",
-                        Alert.AlertType.ERROR);
+                Alert alert = CommonFunctions.createAlert("Greška", "Unesena je pogrešna lozinka", "Unesite ispravnu lozinku", Alert.AlertType.ERROR);
                 alert.showAndWait();
             }
         });

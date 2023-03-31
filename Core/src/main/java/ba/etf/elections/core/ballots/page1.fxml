@@ -1,609 +1,612 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<GridPane fx:id="gridPane" alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="400.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="400.0" />
-      <ColumnConstraints halignment="CENTER" minWidth="10.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-   </rowConstraints>
-   <children>
-      <VBox alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647">
-         <children>
-            <Label alignment="CENTER" text="OPĆINSKO VIJEĆE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-         <children>
-            <RadioButton mnemonicParsing="false" text="SBD">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Emir Hadžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Adnan Hodžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Belma Džafić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Damir Alić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="5. Emina Hadžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="6. Faris Mujkić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="7. Hana Omerović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="8. Jasmin Selimović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="9. Lejla Karahasanović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <RadioButton mnemonicParsing="false" text="BZP">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Mirza Ćosić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Naida Karić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Tarik Smajić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Zara Bešić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="5. Amila Kurtović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <RadioButton mnemonicParsing="false" text="DUG">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Lejla Čaušević">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Mirza Hasanbegović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Naida Džafić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Omer Karić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="5. Selma Hodžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="6. Tarik Alić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="7. Zana Šehić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-         <children>
-            <RadioButton mnemonicParsing="false" text="DSB">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Mirza Šarić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Alma Softić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Emir Kovač">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Ajla Dedić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-         <children>
-            <RadioButton mnemonicParsing="false" text="EKO">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Lejla Karić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Ismet Ibrahimović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Jasmina Selimović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Kenan Kurtić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <RadioButton mnemonicParsing="false" text="SNG">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Amra Zukanović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Edin Mujanović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Irma Šehić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Kenan Džemidžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="5. Medina Kovač">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="6. Rijad Bešlagić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <children>
-            <RadioButton mnemonicParsing="false" text="BDS">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Edin Mujkić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Adnan Hadžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Belma Kovač">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Damir Dedić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-         <children>
-            <RadioButton mnemonicParsing="false" text="ZBS">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Adnan Hadžić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Belma Kovač">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Damir Dedić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Emina Karahasanović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="5. Faruk Omerović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="6. Hana Mujkić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>      <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-         <children>
-            <RadioButton mnemonicParsing="false" text="RSB">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-            </RadioButton>
-            <CheckBox mnemonicParsing="false" text="1. Dino Hasanović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="2. Elma Fejzić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="3. Haris Suljić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="4. Lamija Ahmetović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="5. Nedim Kovačević">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="6. Sabina Halilović">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" text="7. Vedad Mehić">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-         </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </VBox>   </children>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="gridPane" alignment="CENTER" xmlns="http://javafx.com/javafx/19">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="400.0"/>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="400.0"/>
+        <ColumnConstraints halignment="CENTER" minWidth="10.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <VBox alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647">
+            <children>
+                <Label alignment="CENTER" text="OPĆINSKO VIJEĆE">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </VBox.margin>
+                </Label>
+            </children>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <children>
+                <RadioButton mnemonicParsing="false" text="SBD">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Emir Hadžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Adnan Hodžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Belma Džafić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Damir Alić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="5. Emina Hadžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="6. Faris Mujkić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="7. Hana Omerović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="8. Jasmin Selimović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="9. Lejla Karahasanović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+                <RadioButton mnemonicParsing="false" text="BZP">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Mirza Ćosić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Naida Karić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Tarik Smajić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Zara Bešić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="5. Amila Kurtović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <children>
+                <RadioButton mnemonicParsing="false" text="DUG">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Lejla Čaušević">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Mirza Hasanbegović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Naida Džafić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Omer Karić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="5. Selma Hodžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="6. Tarik Alić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="7. Zana Šehić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <children>
+                <RadioButton mnemonicParsing="false" text="DSB">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Mirza Šarić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Alma Softić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Emir Kovač">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Ajla Dedić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <children>
+                <RadioButton mnemonicParsing="false" text="EKO">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Lejla Karić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Ismet Ibrahimović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Jasmina Selimović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Kenan Kurtić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <children>
+                <RadioButton mnemonicParsing="false" text="SNG">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Amra Zukanović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Edin Mujanović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Irma Šehić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Kenan Džemidžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="5. Medina Kovač">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="6. Rijad Bešlagić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <children>
+                <RadioButton mnemonicParsing="false" text="BDS">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Edin Mujkić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Adnan Hadžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Belma Kovač">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Damir Dedić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <children>
+                <RadioButton mnemonicParsing="false" text="ZBS">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Adnan Hadžić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Belma Kovač">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Damir Dedić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Emina Karahasanović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="5. Faruk Omerović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="6. Hana Mujkić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="469.0" prefWidth="390.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <children>
+                <RadioButton mnemonicParsing="false" text="RSB">
+                    <padding>
+                        <Insets bottom="10.0"/>
+                    </padding>
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets right="5.0" top="10.0"/>
+                    </VBox.margin>
+                </RadioButton>
+                <CheckBox mnemonicParsing="false" text="1. Dino Hasanović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="2. Elma Fejzić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="3. Haris Suljić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="4. Lamija Ahmetović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="5. Nedim Kovačević">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="6. Sabina Halilović">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+                <CheckBox mnemonicParsing="false" text="7. Vedad Mehić">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </children>
+            <padding>
+                <Insets left="20.0"/>
+            </padding>
+        </VBox>
+    </children>
 </GridPane>

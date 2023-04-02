@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 // Core module would be used at CIK for generating ballots
-public class CoreApplication {
+public class BallotGeneratorApplication {
     public static void main(String[] args) {
         // ask user to input path to JSON file and Fxml file
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object
@@ -23,6 +23,7 @@ public class CoreApplication {
         String ballotTitle = scanner.nextLine();  // Read user input
 //        String ballotTitle = "ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11";
 //        "OPĆINSKO VIJEĆE"
+//        OPĆINSKI NAČELNIK ILIDŽA
 
         System.out.println("Unesite broj kolona za prikaz na glasačkom listiću:");
         int numberOfColumns = scanner.nextInt();  // Read user input
@@ -94,7 +95,7 @@ public class CoreApplication {
     }
 
     private static String getBallotContentFxml(PartyCandidates partyCandidates, int row, int column) {
-        StringBuilder s = new StringBuilder("      <VBox layoutX=\"10.0\" layoutY=\"469.0\" prefWidth=\"390.0\" GridPane.columnIndex=\"" + column + "\" GridPane.rowIndex=\"" + row + "\">\n" +
+        StringBuilder s = new StringBuilder("      <VBox layoutX=\"10.0\" layoutY=\"469.0\" prefWidth=\"430.0\" GridPane.columnIndex=\"" + column + "\" GridPane.rowIndex=\"" + row + "\">\n" +
                 "         <children>\n" +
                 "            <RadioButton mnemonicParsing=\"false\" text=\"" + partyCandidates.getPartyName() + "\">\n" +
                 "               <padding>\n" +

@@ -20,7 +20,7 @@
     <children>
         <VBox alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647">
             <children>
-                <Label alignment="CENTER" text="OPĆINSKO VIJEĆE">
+                <Label alignment="CENTER" text="OPĆINSKO VIJEĆE ILIDŽA">
                     <font>
                         <Font name="System Bold" size="18.0"/>
                     </font>

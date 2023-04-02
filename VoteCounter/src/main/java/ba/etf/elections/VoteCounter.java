@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -23,11 +24,26 @@ public class VoteCounter {
             Scanner scanner = new Scanner(System.in);  // Create a Scanner object
             System.out.println("Unesite putanju do .json datoteke u kojoj se nalaze glasovi:");
             String path = scanner.nextLine();  // Read user input
+
+            System.out.println("Unesite putanju i naziv .txt datoteke gdje želite da se spase prebrojani glasovi:");
+            String filename = scanner.nextLine();  // Read user input
+
             Map<String, Integer> voteCountHashMap = CountVotes(path);
             printMap(voteCountHashMap);
+            saveMapToTxtFile(filename, voteCountHashMap);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void saveMapToTxtFile(String filename, Map<String, Integer> voteCountHashMap) throws IOException {
+        File file = new File(filename);
+        file.createNewFile();
+        FileWriter fileWriter = new FileWriter(file);
+        for (Map.Entry<String, Integer> entry : voteCountHashMap.entrySet()) {
+            fileWriter.write(entry.getKey() + " => " + entry.getValue() + " glasova" + "\r\n");
+        }
+        fileWriter.close();
     }
 
     private static Map<String, Integer> CountVotes(String filename) throws NoSuchAlgorithmException, InvalidKeyException, IOException {

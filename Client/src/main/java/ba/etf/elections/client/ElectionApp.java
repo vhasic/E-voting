@@ -15,20 +15,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ElectionApp extends Application {
+    private static Stage primaryStage;
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(ElectionApp.class.getResource("mainBallot.fxml"));
         MainController ctrl = new MainController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        primaryStage.setTitle("Izbori 2022");
+        primaryStage.setTitle("Izbori 2023");
         Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setResizable(true);
         primaryStage.setFullScreen(true);
-//        primaryStage.setFullScreen(false);
-//        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
+//        primaryStage.setMaximized(true);
 //        // forbid exiting fullscreen
 //        primaryStage.fullScreenProperty().addListener((observable, oldValue, newValue) -> {
 //            if (!newValue) {
@@ -59,9 +59,15 @@ public class ElectionApp extends Application {
                 throw new RuntimeException(e);
             }
         });
+
+        ElectionApp.primaryStage = primaryStage;
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 }

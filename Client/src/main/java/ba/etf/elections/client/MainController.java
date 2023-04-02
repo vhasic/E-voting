@@ -290,7 +290,9 @@ public class MainController {
         if (!directory.exists()) {
             directory.mkdirs();
         }
-        File file = getFile(directory.getPath() + File.separator + "votes_page" + currentPage + ".json");
+//        String filename = "votes_page" + currentPage + ".json";
+        String filename = CommonFunctions.getBallotTitleKeyword(CommonFunctions.getResource("page" + currentPage + ".fxml")) + ".json";
+        File file = getFile(directory.getPath() + File.separator + filename);
         // read votes from file into a list
         List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
         });

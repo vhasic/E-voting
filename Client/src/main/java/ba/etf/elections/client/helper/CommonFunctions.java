@@ -36,9 +36,9 @@ public class CommonFunctions {
         assert gridPane != null;
         VBox titleVBox = (VBox) gridPane.getChildren().get(0);
         Label titleLabel = (Label) titleVBox.getChildren().get(0);
-        String title = titleLabel.getText();
+        return titleLabel.getText();
         // return first word of the title. Words are delimited by space or special characters. Words can include š,đ,č,ć,ž
-        return title.split("[\\s\\p{Punct}&&[^šđčćžŠĐČĆŽ]]+")[0];
+        // return title.split("[\\s\\p{Punct}&&[^šđčćžŠĐČĆŽ]]+")[0];
     }
 
     /**
@@ -93,6 +93,7 @@ public class CommonFunctions {
         stage.setTitle("Confirm action");
         stage.setResizable(false);
         stage.setScene(new Scene(root));
+        stage.initOwner(ElectionApp.getPrimaryStage());
         stage.show();
         return stage;
     }
@@ -112,6 +113,7 @@ public class CommonFunctions {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.initOwner(ElectionApp.getPrimaryStage());
         return alert;
     }
 

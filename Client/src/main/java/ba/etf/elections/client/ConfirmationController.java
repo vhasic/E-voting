@@ -28,7 +28,11 @@ public class ConfirmationController {
                 actionConfirmed = true;
                 // close the window
                 Stage stage = (Stage) passwordField.getScene().getWindow();
-                stage.close();
+                try {
+                    stage.close();
+                } catch (Exception e) {
+                    // if window is already closed, ignore exception
+                }
             } else {
                 actionConfirmed = false;
                 // Show the error alert
@@ -42,12 +46,3 @@ public class ConfirmationController {
         return actionConfirmed;
     }
 }
-
-/*
-            String key = System.getenv("key"); // key must be in form of BCrypt salt
-            // Hash the user's password with BCrypt and the key
-            String salt = BCrypt.gensalt();
-            System.out.println(salt);
-            String hashedPassword = BCrypt.hashpw(password, key);
-            System.out.println(hashedPassword);
- */

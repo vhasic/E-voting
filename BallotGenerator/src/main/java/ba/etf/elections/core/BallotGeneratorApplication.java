@@ -95,14 +95,17 @@ public class BallotGeneratorApplication {
     }
 
     private static String getBallotContentFxml(PartyCandidates partyCandidates, int row, int column) {
+        // If party has candidates, make party name bold, otherwise make it normal (this is in case of independent candidates)
+        String fontType = partyCandidates.getPartyCandidates().size() > 0 ? "System Bold" : "System";
+
         StringBuilder s = new StringBuilder("      <VBox layoutX=\"10.0\" layoutY=\"469.0\" prefWidth=\"430.0\" GridPane.columnIndex=\"" + column + "\" GridPane.rowIndex=\"" + row + "\">\n" +
                 "         <children>\n" +
                 "            <RadioButton mnemonicParsing=\"false\" text=\"" + partyCandidates.getPartyName() + "\">\n" +
                 "               <padding>\n" +
-                "                  <Insets bottom=\"10.0\" />\n" +
+                "                  <Insets bottom=\"10.0\" top=\"10.0\" />\n" +
                 "               </padding>\n" +
                 "               <font>\n" +
-                "                  <Font name=\"System Bold\" size=\"20.0\" />\n" +
+                "                  <Font name=\""+fontType+"\" size=\"20.0\" />\n"+
                 "               </font>\n" +
                 "               <VBox.margin>\n" +
                 "                  <Insets right=\"5.0\" top=\"10.0\" />\n" +

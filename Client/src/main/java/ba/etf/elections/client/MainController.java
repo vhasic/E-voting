@@ -110,7 +110,8 @@ public class MainController {
                 GridPane grid = new GridPane();
                 // Create a label for the text
                 Label label = new Label("Molimo da potvrdite da želite predati glasački listić.\n" +
-                        "Ovako će izgledati predati listić:\n" + CommonFunctions.getFormattedVoteCandidates(vote));
+                        "Ovako će izgledati predati listić:\n" +
+                        "-------------------------------------\n" + CommonFunctions.getFormattedVoteCandidates(vote));
                 label.setWrapText(true);
                 // Create an image view for the image
                 ImageView imageView;
@@ -131,6 +132,7 @@ public class MainController {
                 grid.setVgap(10);
                 // Set the grid as the content for the dialog pane
                 alert.getDialogPane().setContent(grid);
+                alert.initOwner(ElectionApp.getPrimaryStage());
                 Optional<ButtonType> result = alert.showAndWait();
 
                 // wait for the user to confirm the vote
@@ -396,3 +398,4 @@ public class MainController {
     }
 
 }
+// TODO Trebalo bi evidentirati svako unošenje lozinke i sravniti sa brojem glasova, elektronskih i odštampanih.

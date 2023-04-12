@@ -154,7 +154,7 @@ public class CommonFunctions {
      * @throws DocumentException if QR code cannot be created
      */
     public static Image getQRCodeImage(Vote vote) throws DocumentException {
-        BarcodeQRCode qrCode = new BarcodeQRCode(vote.getVoteMacHash(), 200, 200, null);
+        BarcodeQRCode qrCode = new BarcodeQRCode(vote.getVoteMacHash(), 100, 100, null);
         return qrCode.getImage();
     }
 
@@ -164,7 +164,7 @@ public class CommonFunctions {
      * @throws DocumentException if QR code cannot be created
      */
     public static java.awt.Image getAWTQRCodeImage(Vote vote) throws DocumentException {
-        BarcodeQRCode qrCode = new BarcodeQRCode(vote.getVoteMacHash(), 200, 200, null);
+        BarcodeQRCode qrCode = new BarcodeQRCode(vote.getVoteMacHash(), 100, 100, null);
         return qrCode.createAwtImage(java.awt.Color.BLACK, java.awt.Color.WHITE);
     }
 }

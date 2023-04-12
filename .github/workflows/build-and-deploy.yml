@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: BallotGenerator
-          path: ./Client/target/BallotGenerator-1.0-shaded.jar
+          path: ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar
 
   build-and-deploy-vote-counter:
     runs-on: ubuntu-latest

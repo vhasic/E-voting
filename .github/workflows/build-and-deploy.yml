@@ -20,7 +20,6 @@ jobs:
 
       - name: Build and package Client module
         run: |
-          cd Client
           mvn clean package
         working-directory: ./Client
 
@@ -44,7 +43,6 @@ jobs:
 
       - name: Build and package BallotGenerator module
         run: |
-          cd BallotGenerator
           mvn clean package
         working-directory: ./BallotGenerator
 
@@ -68,7 +66,6 @@ jobs:
 
       - name: Build and package VoteCounter module
         run: |
-          cd VoteCounter
           mvn clean package
         working-directory: ./VoteCounter
 
@@ -92,7 +89,6 @@ jobs:
 
       - name: Build and package PasswordGenerator module
         run: |
-          cd PasswordGenerator
           mvn clean package
         working-directory: ./PasswordGenerator
 

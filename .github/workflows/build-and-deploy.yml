@@ -1,0 +1,95 @@
+name: JavaFx App Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+
+      - name: Build and package Client module
+        run: |
+          cd Client
+          mvn clean package
+        working-directory: ./Client
+
+      - name: Deploy Client module artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: E-Voting
+          path: ./Client/target/client-1.0-shaded.jar
+
+  build-and-deploy-ballot-generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+
+      - name: Build and package BallotGenerator module
+        run: |
+          cd BallotGenerator
+          mvn clean package
+        working-directory: ./BallotGenerator
+
+      - name: Deploy BallotGenerator module artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: BallotGenerator
+          path: ./Client/target/BallotGenerator-1.0-shaded.jar
+
+  build-and-deploy-vote-counter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+
+      - name: Build and package VoteCounter module
+        run: |
+          cd VoteCounter
+          mvn clean package
+        working-directory: ./VoteCounter
+
+      - name: Deploy VoteCounter module artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: VoteCounter
+          path: ./VoteCounter/target/VoteCounter-1.0-shaded.jar
+
+  build-and-deploy-password-generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+
+      - name: Build and package PasswordGenerator module
+        run: |
+          cd PasswordGenerator
+          mvn clean package
+        working-directory: ./PasswordGenerator
+
+      - name: Deploy PasswordGenerator module artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: PasswordGenerator
+          path: ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar

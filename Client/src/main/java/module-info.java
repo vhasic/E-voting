@@ -9,6 +9,8 @@ module ba.etf.elections.client {
     requires javafx.swing;
     requires java.naming;
     requires jbcrypt;
+    requires org.apache.logging.log4j;
+    requires org.apache.logging.log4j.core;
 
     opens ba.etf.elections.client to javafx.fxml;
     exports ba.etf.elections.client;

@@ -17,6 +17,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,6 +30,8 @@ import java.util.Optional;
 
 
 public class MainController {
+    private static final Logger logger = LogManager.getLogger(MainController.class);
+
     private static int currentPage = 0;
     public ScrollPane scrollPane;
     public GridPane innerGridPane; // this name must be exactly the same as the fx:id in the FXML file
@@ -55,12 +59,14 @@ public class MainController {
                 // if the action was confirmed in the new window (stage is closed), open new ballot
                 stage.setOnHidden(event -> {
                     if (ctrl.isActionConfirmed()) {
+                        logger.info("Password entered: New ballot opened");
                         prepareNewBallot();
                         btnOpenNewBallot.setVisible(false);
                         openPage(0);
                     }
                 });
             } catch (IOException e) {
+                logger.error("Error while opening new ballot: " + e.getMessage());
                 e.printStackTrace();
             }
         });
@@ -81,10 +87,11 @@ public class MainController {
 
             // if user confirms, submit invalid ballot
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                System.out.println("Invalid ballot submitted");
+//                System.out.println("Invalid ballot submitted");
                 Vote vote = Vote.createInvalidVote();
                 vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                 submitVote(vote);
+//                logger.info("Invalid ballot submitted " + "page" + currentPage);
 
                 setPageButtonVisibility(currentPage, true);
                 openPage(currentPage + 1);
@@ -123,6 +130,7 @@ public class MainController {
                     javafx.scene.image.Image fxImage = SwingFXUtils.toFXImage(bImage, null);
                     imageView = new ImageView(fxImage);
                 } catch (DocumentException e) {
+                    logger.error("Error while creating QR code image: " + e.getMessage());
                     throw new RuntimeException(e);
                 }
                 // Add the label and image view to the grid
@@ -137,8 +145,9 @@ public class MainController {
 
                 // wait for the user to confirm the vote
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    System.out.println("Valid ballot submitted");
+//                    System.out.println("Valid ballot submitted");
                     submitVote(vote);
+//                    logger.info("Valid ballot submitted " + "page" + currentPage);
                     setPageButtonVisibility(currentPage, true);
                     openPage(currentPage + 1);
                     // if all pages are disabled, then member of voting committee has to enable new ballot
@@ -264,6 +273,7 @@ public class MainController {
     private void submitVote(Vote vote) {
         try {
             writeVoteToFile(vote);
+//            logger.info("Vote written to file");
             // store PDFs in ./PDFVotes/ folder
             String directoryPath = System.getProperty("user.dir") + File.separator + "PDFVotes" + File.separator;
             // create directory if not exists
@@ -272,9 +282,11 @@ public class MainController {
                 directory.mkdirs();
             }
             PDFHelper.printToPDF(vote, directory.getPath() + File.separator);
+//            logger.info("Vote printed");
+            logger.info("Ballot submitted " + "page" + currentPage); // this is logged only if vote is successfully saved to file and printed
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+            logger.error("Error while submitting vote" + e.getMessage());
+            e.printStackTrace();
         }
         clearBallot();
     }
@@ -318,6 +330,7 @@ public class MainController {
                 fileWriter.write("[]");
                 fileWriter.close();
             } catch (Exception e) {
+                logger.error("Error while creating file " + filename + ": " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -398,4 +411,3 @@ public class MainController {
     }
 
 }
-// TODO Trebalo bi evidentirati svako unošenje lozinke i sravniti sa brojem glasova, elektronskih i odštampanih.

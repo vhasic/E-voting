@@ -16,7 +16,7 @@
     </properties>
 
     <dependencies>
-<!--        cross-platform fat jar-->
+        <!--        cross-platform fat jar-->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
@@ -31,20 +31,20 @@
             <classifier>linux</classifier>
         </dependency>
 
-<!--&lt;!&ndash;        for raspberry pi arm 32&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.openjfx</groupId>-->
-<!--            <artifactId>javafx-graphics</artifactId>-->
-<!--            <version>17.0.2</version>-->
-<!--            <classifier>linux-arm32-monocle</classifier>-->
-<!--        </dependency>-->
+        <!--&lt;!&ndash;        for raspberry pi arm 32&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.openjfx</groupId>-->
+        <!--            <artifactId>javafx-graphics</artifactId>-->
+        <!--            <version>17.0.2</version>-->
+        <!--            <classifier>linux-arm32-monocle</classifier>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>17.0.2</version>
-            <classifier>mac</classifier>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-graphics</artifactId>
+                    <version>17.0.2</version>
+                    <classifier>mac</classifier>
+                </dependency>-->
 
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -105,6 +105,18 @@
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
+        </dependency>
+
+        <!--        logging-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
         </dependency>
     </dependencies>
 

@@ -68,14 +68,14 @@ public class VoteCounter {
                 }
             }
         }
-        // sort map by value
-//        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
-//        voteCountHashMap.entrySet()
-//                .stream()
-//                .sorted(Map.Entry.comparingByValue())
-//                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+        // sort map by value in descending order
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        voteCountHashMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 
-        return voteCountHashMap;
+        return sortedMap;
     }
 
     private static void printMap(Map<String, Integer> map) {

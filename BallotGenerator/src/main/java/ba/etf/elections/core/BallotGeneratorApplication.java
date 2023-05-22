@@ -21,24 +21,17 @@ public class BallotGeneratorApplication {
 
         System.out.println("Unesite naslov glasačkog listića:");
         String ballotTitle = scanner.nextLine();  // Read user input
-//        String ballotTitle = "ZASTUPNIČKI/PREDSTAVNIČKI DOM PARLAMENTA FEDERACIJE BIH - IZBORNA JEDINICA 11";
-//        "OPĆINSKO VIJEĆE"
-//        OPĆINSKI NAČELNIK ILIDŽA
 
         System.out.println("Unesite broj kolona za prikaz na glasačkom listiću:");
-        int numberOfColumns = scanner.nextInt();  // Read user input
-        //read enter key after reading int
-        scanner.nextLine();
-//        int numberOfColumns = 3;
+        int numberOfColumns = scanner.nextInt();
+        scanner.nextLine(); //read enter key after reading int
+
 
         System.out.println("Unesite putanju do .json datoteke u kojoj se nalaze stranke i kandidati:");
         String inputFilename = scanner.nextLine();  // Read user input
-//        String inputFilename = "C:\\Users\\Vahidin\\IdeaProjects\\Elections\\Core\\src\\main\\java\\ba\\etf\\elections\\core\\parties&candidates.json";
 
         System.out.println("Unesite putanju do .fxml datoteke u koju želite da se upišu podaci:");
-        String outputFilename = scanner.nextLine();  // Read user input
-//        String outputFilename = "C:\\Users\\Vahidin\\IdeaProjects\\Elections\\Client\\src\\main\\resources\\ba\\etf\\elections\\client\\page1.fxml";
-//        "C:\\Users\\Vahidin\\IdeaProjects\\Elections\\Core\\src\\main\\java\\ba\\etf\\elections\\core\\ballots\\page1.fxml";
+        String outputFilename = scanner.nextLine();
 
         try {
             List<PartyCandidates> partyCandidatesList = GetPartiesCandidates(inputFilename);

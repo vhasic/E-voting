@@ -87,7 +87,6 @@ public class MainController {
 
             // if user confirms, submit invalid ballot
             if (result.isPresent() && result.get() == ButtonType.OK) {
-//                System.out.println("Invalid ballot submitted");
                 Vote vote = Vote.createInvalidVote();
                 vote.calculateVoteMacHash(); // calculate vote mac hash to assure vote integrity
                 submitVote(vote);
@@ -145,7 +144,6 @@ public class MainController {
 
                 // wait for the user to confirm the vote
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-//                    System.out.println("Valid ballot submitted");
                     submitVote(vote);
 //                    logger.info("Valid ballot submitted " + "page" + currentPage);
                     setPageButtonVisibility(currentPage, true);
@@ -182,15 +180,12 @@ public class MainController {
         pageNumbersHBox.getChildren().clear();
         while (CommonFunctions.getResource("page" + i + ".fxml") != null) {
             // create new button with text for each page
-//            Button button = new Button(Integer.toString(i));
             Button button = new Button(CommonFunctions.getBallotTitleKeyword(CommonFunctions.getResource("page" + i + ".fxml")));
-            // set fx:id for button to "#btnPage" + i
             button.setId("btnPage" + i);
             // set font size to 18px
             button.setStyle("-fx-font-size: 18px;");
             // add button as child to pageNumbersHBox
             pageNumbersHBox.getChildren().add(button);
-//            Button button = (Button) pageNumbersHBox.lookup("#btnPage" + i); // find button with fx:id "#btnPage" + i
             // add button to list of page buttons btnPageList
             btnPageList.add(button);
             i++;

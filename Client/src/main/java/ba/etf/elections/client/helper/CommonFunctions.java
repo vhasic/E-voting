@@ -37,8 +37,6 @@ public class CommonFunctions {
         VBox titleVBox = (VBox) gridPane.getChildren().get(0);
         Label titleLabel = (Label) titleVBox.getChildren().get(0);
         return titleLabel.getText();
-        // return first word of the title. Words are delimited by space or special characters. Words can include š,đ,č,ć,ž
-        // return title.split("[\\s\\p{Punct}&&[^šđčćžŠĐČĆŽ]]+")[0];
     }
 
     /**

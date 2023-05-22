@@ -26,7 +26,7 @@ public class VoteCounter {
             String path = scanner.nextLine();  // Read user input
 
             System.out.println("Unesite putanju i naziv .txt datoteke gdje želite da se spase prebrojani glasovi:");
-            String filename = scanner.nextLine();  // Read user input
+            String filename = scanner.nextLine();
 
             Map<String, Integer> voteCountHashMap = CountVotes(path);
             printMap(voteCountHashMap);

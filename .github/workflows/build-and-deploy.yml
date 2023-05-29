@@ -26,7 +26,7 @@ jobs:
       - name: Rename Client module artifact
         run: |
           cd ./Client/target
-          mv Client-1.0-shaded.jar E-voting.jar
+          mv client-1.0-shaded.jar E-voting.jar
         working-directory: .
 
       - name: Calculate SHA256 hash for Client module

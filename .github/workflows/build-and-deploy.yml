@@ -20,8 +20,9 @@ jobs:
 
       - name: Build and package Client module
         run: |
-          mvn clean package -DoutputDirectory=./Client/target/
-          mv ./Client/target/client-1.0-shaded.jar ./Client/target/E-Voting.jar
+          mvn clean package
+          cd ./Client/target
+          mv client-1.0-shaded.jar E-Voting.jar
         working-directory: ./Client
 
       - name: Calculate SHA256 hash for Client module
@@ -58,8 +59,9 @@ jobs:
 
       - name: Build and package BallotGenerator module
         run: |
-          mvn clean package -DoutputDirectory=./BallotGenerator/target/
-          mv ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar ./BallotGenerator/target/BallotGenerator.jar
+          mvn clean package
+          cd ./BallotGenerator/target
+          mv BallotGenerator-1.0-shaded.jar BallotGenerator.jar
         working-directory: ./BallotGenerator
 
       - name: Calculate SHA256 hash for BallotGenerator module
@@ -96,8 +98,9 @@ jobs:
 
       - name: Build and package VoteCounter module
         run: |
-          mvn clean package -DoutputDirectory=./VoteCounter/target/
-          mv ./VoteCounter/target/VoteCounter-1.0-shaded.jar ./VoteCounter/target/VoteCounter.jar
+          mvn clean package
+          cd ./VoteCounter/target
+          mv VoteCounter-1.0-shaded.jar VoteCounter.jar
         working-directory: ./VoteCounter
 
       - name: Calculate SHA256 hash for VoteCounter module
@@ -135,8 +138,9 @@ jobs:
 
       - name: Build and package PasswordGenerator module
         run: |
-          mvn clean package -DoutputDirectory=./PasswordGenerator/target/
-          mv ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar ./PasswordGenerator/target/PasswordGenerator.jar
+          mvn clean package
+          cd ./PasswordGenerator/target
+          mv PasswordGenerator-1.0-shaded.jar PasswordGenerator.jar
         working-directory: ./PasswordGenerator
 
       - name: Calculate SHA256 hash for PasswordGenerator module

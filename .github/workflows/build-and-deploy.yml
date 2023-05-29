@@ -25,7 +25,7 @@ jobs:
 
       - name: Calculate SHA256 hash for Client module
         run: |
-            sha256sum ./Client/target/client-1.0-shaded.jar > E-voting.txt
+          sha256sum ./Client/target/client-1.0-shaded.jar > E-voting.txt
           working-directory: .
 
       - name: Deploy Client module artifact

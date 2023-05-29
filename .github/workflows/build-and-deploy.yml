@@ -33,9 +33,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: E-Voting
-          path: |
-            ./Client/target/client-1.0-shaded.jar
-            ./E-voting.txt
+          path: ./Client/target/client-1.0-shaded.jar
+
+      - name: Deploy Client module SHA256 hash
+        uses: actions/upload-artifact@v3
+        with:
+          name: E-Voting-SHA256
+          path: ./E-voting-SHA256.txt
 
   build-and-deploy-ballot-generator:
     runs-on: ubuntu-latest
@@ -64,9 +68,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: BallotGenerator
-          path: |
-            ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar
-            ./BallotGenerator.txt
+          path: ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar
+
+      - name: Deploy BallotGenerator module SHA256 hash
+        uses: actions/upload-artifact@v3
+        with:
+          name: BallotGenerator-SHA256
+          path: ./BallotGenerator.txt
 
   build-and-deploy-vote-counter:
     runs-on: ubuntu-latest
@@ -95,9 +103,14 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: VoteCounter
-          path: |
-            ./VoteCounter/target/VoteCounter-1.0-shaded.jar
-            ./VoteCounter.txt
+          path: ./VoteCounter/target/VoteCounter-1.0-shaded.jar
+
+      - name: Deploy VoteCounter module SHA256 hash
+        uses: actions/upload-artifact@v3
+        with:
+          name: VoteCounter-SHA256
+          path: ./VoteCounter.txt
+
 
   build-and-deploy-password-generator:
     runs-on: ubuntu-latest
@@ -126,6 +139,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: PasswordGenerator
-          path: |
-            ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar
-            ./PasswordGenerator.txt
+          path: ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar
+
+      - name: Deploy PasswordGenerator module SHA256 hash
+        uses: actions/upload-artifact@v3
+        with:
+          name: PasswordGenerator-SHA256
+          path: ./PasswordGenerator.txt

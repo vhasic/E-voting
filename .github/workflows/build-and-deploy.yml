@@ -25,8 +25,9 @@ jobs:
 
       - name: Calculate SHA256 hash for Client module
         run: |
-          sha256sum ./Client/target/client-1.0-shaded.jar > E-voting.txt
-        working-directory: ./Client
+          cd ./Client/target
+          sha256sum client-1.0-shaded.jar > ../../E-voting.txt
+        working-directory: .
 
       - name: Deploy Client module artifact
         uses: actions/upload-artifact@v3
@@ -55,8 +56,9 @@ jobs:
 
       - name: Calculate SHA256 hash for BallotGenerator module
         run: |
-          sha256sum ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar > BallotGenerator.txt
-        working-directory: ./BallotGenerator
+          cd ./BallotGenerator/target
+          sha256sum BallotGenerator-1.0-shaded.jar > ../../BallotGenerator.txt
+        working-directory: .
 
       - name: Deploy BallotGenerator module artifact
         uses: actions/upload-artifact@v3
@@ -85,8 +87,9 @@ jobs:
 
       - name: Calculate SHA256 hash for VoteCounter module
         run: |
-          sha256sum ./VoteCounter/target/VoteCounter-1.0-shaded.jar > VoteCounter.txt
-        working-directory: ./VoteCounter
+          cd ./VoteCounter/target
+          sha256sum VoteCounter-1.0-shaded.jar > ../../VoteCounter.txt
+        working-directory: .
 
       - name: Deploy VoteCounter module artifact
         uses: actions/upload-artifact@v3
@@ -115,8 +118,9 @@ jobs:
 
       - name: Calculate SHA256 hash for PasswordGenerator module
         run: |
-          sha256sum ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar > PasswordGenerator.txt
-        working-directory: ./PasswordGenerator
+          cd ./PasswordGenerator/target
+          sha256sum PasswordGenerator-1.0-shaded.jar > ../../PasswordGenerator.txt
+        working-directory: .
 
       - name: Deploy PasswordGenerator module artifact
         uses: actions/upload-artifact@v3

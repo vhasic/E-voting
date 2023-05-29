@@ -23,11 +23,18 @@ jobs:
           mvn clean package
         working-directory: ./Client
 
+      - name: Calculate SHA256 hash for Client module
+        run: |
+            sha256sum ./Client/target/client-1.0-shaded.jar > E-voting.txt
+          working-directory: .
+
       - name: Deploy Client module artifact
         uses: actions/upload-artifact@v3
         with:
           name: E-Voting
-          path: ./Client/target/client-1.0-shaded.jar
+          path: |
+            ./Client/target/client-1.0-shaded.jar
+            ./E-voting.txt
 
   build-and-deploy-ballot-generator:
     runs-on: ubuntu-latest
@@ -46,11 +53,18 @@ jobs:
           mvn clean package
         working-directory: ./BallotGenerator
 
+      - name: Calculate SHA256 hash for BallotGenerator module
+        run: |
+          sha256sum ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar > BallotGenerator.txt
+          working-directory: .
+
       - name: Deploy BallotGenerator module artifact
         uses: actions/upload-artifact@v3
         with:
           name: BallotGenerator
-          path: ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar
+          path: |
+            ./BallotGenerator/target/BallotGenerator-1.0-shaded.jar
+            ./BallotGenerator.txt
 
   build-and-deploy-vote-counter:
     runs-on: ubuntu-latest
@@ -69,11 +83,18 @@ jobs:
           mvn clean package
         working-directory: ./VoteCounter
 
+      - name: Calculate SHA256 hash for VoteCounter module
+        run: |
+          sha256sum ./VoteCounter/target/VoteCounter-1.0-shaded.jar > VoteCounter.txt
+          working-directory: .
+
       - name: Deploy VoteCounter module artifact
         uses: actions/upload-artifact@v3
         with:
           name: VoteCounter
-          path: ./VoteCounter/target/VoteCounter-1.0-shaded.jar
+          path: |
+            ./VoteCounter/target/VoteCounter-1.0-shaded.jar
+            ./VoteCounter.txt
 
   build-and-deploy-password-generator:
     runs-on: ubuntu-latest
@@ -92,8 +113,15 @@ jobs:
           mvn clean package
         working-directory: ./PasswordGenerator
 
+      - name: Calculate SHA256 hash for PasswordGenerator module
+        run: |
+          sha256sum ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar > PasswordGenerator.txt
+          working-directory: .
+
       - name: Deploy PasswordGenerator module artifact
         uses: actions/upload-artifact@v3
         with:
           name: PasswordGenerator
-          path: ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar
+          path: |
+            ./PasswordGenerator/target/PasswordGenerator-1.0-shaded.jar
+            ./PasswordGenerator.txt

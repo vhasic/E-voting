@@ -39,15 +39,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: E-Voting
-          path: ./Client/target/E-voting.jar
-          content-type: 'application/java-archive'
-
-      - name: Deploy Client module SHA256 hash
-        uses: actions/upload-artifact@v3
-        with:
-          name: E-Voting-SHA256
-          path: ./E-voting-SHA256.txt
-          content-type: 'text/plain'
+          path: |
+            ./Client/target/E-voting.jar
+            ./E-voting-SHA256.txt
 
   build-and-deploy-ballot-generator:
     runs-on: ubuntu-latest
@@ -82,15 +76,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: BallotGenerator
-          path: ./BallotGenerator/target/BallotGenerator.jar
-          content-type: 'application/java-archive'
-
-      - name: Deploy BallotGenerator module SHA256 hash
-        uses: actions/upload-artifact@v3
-        with:
-          name: BallotGenerator-SHA256
-          path: ./BallotGenerator-SHA256.txt
-          content-type: 'text/plain'
+          path: |
+            ./BallotGenerator/target/BallotGenerator.jar
+            ./BallotGenerator-SHA256.txt
 
   build-and-deploy-vote-counter:
     runs-on: ubuntu-latest
@@ -125,16 +113,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: VoteCounter
-          path: ./VoteCounter/target/VoteCounter.jar
-          content-type: 'application/java-archive'
-
-      - name: Deploy VoteCounter module SHA256 hash
-        uses: actions/upload-artifact@v3
-        with:
-          name: VoteCounter-SHA256
-          path: ./VoteCounter-SHA256.txt
-          content-type: 'text/plain'
-
+          path: |
+            ./VoteCounter/target/VoteCounter.jar
+            ./VoteCounter-SHA256.txt
 
   build-and-deploy-password-generator:
     runs-on: ubuntu-latest
@@ -169,12 +150,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: PasswordGenerator
-          path: ./PasswordGenerator/target/PasswordGenerator.jar
-          content-type: 'application/java-archive'
-
-      - name: Deploy PasswordGenerator module SHA256 hash
-        uses: actions/upload-artifact@v3
-        with:
-          name: PasswordGenerator-SHA256
-          path: ./PasswordGenerator-SHA256.txt
-          content-type: 'text/plain'
+          path: |
+            ./PasswordGenerator/target/PasswordGenerator.jar
+            ./PasswordGenerator-SHA256.txt

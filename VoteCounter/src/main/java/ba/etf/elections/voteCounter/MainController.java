@@ -2,42 +2,75 @@
  * Copyright (c) 2023. Vahidin Hasić
  */
 
-package ba.etf.elections;
+package ba.etf.elections.voteCounter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
-public class VoteCounter {
-    public static void main(String[] args) {
+public class MainController {
+    public Button btnPathToJsonVotes;
+    public Button btnPathToFileToSaveVotes;
+    public Button btnCountVotes;
+
+    private Path pathToJsonVotes;
+    private Path pathToFileToSaveVotes;
+
+    @FXML
+    protected void initialize() {
+        btnPathToJsonVotes.setOnAction(actionEvent -> {
+            pathToJsonVotes = createFileChooser();
+        });
+        btnPathToFileToSaveVotes.setOnAction(actionEvent -> {
+            pathToFileToSaveVotes = createFileChooser();
+        });
+        btnCountVotes.setOnAction(actionEvent -> {
+            countVotes();
+        });
+    }
+
+    private Path createFileChooser() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File selectedFile = fileChooser.showOpenDialog(VoteCounterApplication.getStage());
+        Path filePath = null;
+        if (selectedFile != null) {
+            filePath = selectedFile.toPath();
+        }
+        return filePath;
+    }
+
+    private void countVotes() {
         try {
-            // ask user to input path to JSON file with votes
-            Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-            System.out.println("Unesite putanju do .json datoteke u kojoj se nalaze glasovi:");
-            String path = scanner.nextLine();  // Read user input
-
-            System.out.println("Unesite putanju i naziv .txt datoteke gdje želite da se spase prebrojani glasovi:");
-            String filename = scanner.nextLine();
-
-            Map<String, Integer> voteCountHashMap = CountVotes(path);
+            Map<String, Integer> voteCountHashMap = CountVotes(pathToJsonVotes);
             printMap(voteCountHashMap);
-            saveMapToTxtFile(filename, voteCountHashMap);
+            saveMapToTxtFile(pathToFileToSaveVotes, voteCountHashMap);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void saveMapToTxtFile(String filename, Map<String, Integer> voteCountHashMap) throws IOException {
-        File file = new File(filename);
+    /**
+     * Saves counted votes to specified file
+     *
+     * @param pathToFileToSaveVotes path and name of file where to save counted votes
+     * @param voteCountHashMap      map of counted votes
+     * @throws IOException if file cannot be created
+     */
+    private void saveMapToTxtFile(Path pathToFileToSaveVotes, Map<String, Integer> voteCountHashMap) throws IOException {
+        File file = new File(pathToFileToSaveVotes.toUri());
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         for (Map.Entry<String, Integer> entry : voteCountHashMap.entrySet()) {
@@ -46,8 +79,14 @@ public class VoteCounter {
         fileWriter.close();
     }
 
-    private static Map<String, Integer> CountVotes(String filename) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        File file = new File(filename); // open file that contains votes as JSON array of objects
+    /**
+     * Counts votes from specified file
+     *
+     * @param pathToJsonVotes path and name of file where votes are stored
+     * @return map of counted votes
+     */
+    private Map<String, Integer> CountVotes(Path pathToJsonVotes) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+        File file = new File(pathToJsonVotes.toUri()); // open file that contains votes as JSON array of objects
         // read votes from file into a list of Vote objects
         ObjectMapper mapper = new ObjectMapper();
         List<Vote> votes = mapper.readValue(file, new TypeReference<>() {
@@ -78,7 +117,12 @@ public class VoteCounter {
         return sortedMap;
     }
 
-    private static void printMap(Map<String, Integer> map) {
+    /**
+     * Prints map to console
+     *
+     * @param map map to print
+     */
+    private void printMap(Map<String, Integer> map) {
         System.out.println("Ukupni glasovi:\n");
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " => " + entry.getValue() + " glasova");

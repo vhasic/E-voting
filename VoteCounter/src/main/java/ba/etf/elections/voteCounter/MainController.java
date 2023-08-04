@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -24,6 +25,8 @@ public class MainController {
     public Button btnPathToJsonVotes;
     public Button btnPathToFileToSaveVotes;
     public Button btnCountVotes;
+    public Label labelJSONPath;
+    public Label labelTXTPath;
 
     private Path pathToJsonVotes;
     private Path pathToFileToSaveVotes;
@@ -32,9 +35,11 @@ public class MainController {
     protected void initialize() {
         btnPathToJsonVotes.setOnAction(actionEvent -> {
             pathToJsonVotes = createFileChooser();
+            labelJSONPath.setText(pathToJsonVotes.toString());
         });
         btnPathToFileToSaveVotes.setOnAction(actionEvent -> {
             pathToFileToSaveVotes = createFileChooser();
+            labelTXTPath.setText(pathToFileToSaveVotes.toString());
         });
         btnCountVotes.setOnAction(actionEvent -> {
             countVotes();

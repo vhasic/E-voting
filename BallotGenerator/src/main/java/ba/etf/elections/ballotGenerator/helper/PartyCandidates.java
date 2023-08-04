@@ -2,7 +2,7 @@
  * Copyright (c) 2023. Vahidin Hasić
  */
 
-package ba.etf.elections.core;
+package ba.etf.elections.ballotGenerator.helper;
 
 import java.util.ArrayList;
 import java.util.List;

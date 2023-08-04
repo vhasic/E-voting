@@ -23,7 +23,7 @@
     <children>
         <VBox alignment="CENTER" GridPane.columnSpan="2147483647" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
             <children>
-                <Label text="UPUTSTVA ZA GLASANJE">
+                <Label text="VOTING INSTRUCTIONS">
                     <font>
                         <Font size="20.0" />
                     </font>

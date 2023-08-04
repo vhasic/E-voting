@@ -1,0 +1,141 @@
+[
+  {
+    "partyName": "SBD",
+    "partyCandidates": [
+      "1. Michael Johnson",
+      "2. Sarah Davis",
+      "3. Christopher Wilson",
+      "4. Emily Thompson",
+      "5. David Brown",
+      "6. Samantha Martinez",
+      "7. Matthew Taylor",
+      "8. Elizabeth Hernandez",
+      "9. Kevin Anderson"
+    ]
+  },
+  {
+    "partyName": "BZP",
+    "partyCandidates": [
+      "1. Jennifer Rodriguez",
+      "2. Joshua Lee",
+      "3. Amanda Wright",
+      "4. Ryan Green",
+      "5. Stephanie Perez",
+      "6. Benjamin Scott"
+    ]
+  },
+  {
+    "partyName": "DUG",
+    "partyCandidates": [
+      "1. Anthony Adams",
+      "2. Rachel Campbell",
+      "3. Nicholas Evans",
+      "4. Victoria Flores",
+      "5. Samuel Parker",
+      "6. Madison Collins",
+      "7. Jonathan Cooper"
+    ]
+  },
+  {
+    "partyName": "DSB",
+    "partyCandidates": [
+      "1. Megan Bailey",
+      "2. Christopher Phillips",
+      "3. Olivia Hall",
+      "4. Nathan Wright",
+      "5. Isabella Torres",
+      "6. Christian Lewis",
+      "7. Sophia Jackson",
+      "8. William Hill",
+      "9. Ava Nelson",
+      "10. Ethan Adams"
+    ]
+  },
+  {
+    "partyName": "EKO",
+    "partyCandidates": [
+      "1. Jacob Parker",
+      "2. Grace Ramirez",
+      "3. Caleb Cooper",
+      "4. Chloe Allen",
+      "5. Dylan Wright",
+      "6. Taylor Davis",
+      "7. Isaac Perez",
+      "8. Hailey Green",
+      "9. Gabriel Turner"
+    ]
+  },
+  {
+    "partyName": "SNG",
+    "partyCandidates": [
+      "1. Lillian Scott",
+      "2. Elijah Baker",
+      "3. Addison King",
+      "4. Alexander Anderson",
+      "5. Natalie Hernandez",
+      "6. Daniel Wilson",
+      "7. Samantha Martinez",
+      "8. Joseph Taylor",
+      "9. Emily Thompson",
+      "10. Christopher Wilson"
+    ]
+  },
+  {
+    "partyName": "BDS",
+    "partyCandidates": [
+      "1. Elizabeth Hernandez",
+      "2. Kevin Anderson",
+      "3. Sarah Davis",
+      "4. Michael Johnson",
+      "5. Samantha Martinez",
+      "6. David Brown",
+      "7. Emily Thompson",
+      "8. Matthew Taylor",
+      "9. Christopher Wilson"
+    ]
+  },
+  {
+    "partyName": "ZBS",
+    "partyCandidates": [
+      "1. Tyler Baker",
+      "2. Lauren Mitchell",
+      "3. Stephanie Perez",
+      "4. Benjamin Scott",
+      "5. Jennifer Rodriguez",
+      "6. Amanda Wright",
+      "7. Joshua Lee",
+      "8. Ryan Green",
+      "9. Nicole King",
+      "10. Brandon Turner"
+    ]
+  },
+  {
+    "partyName": "RSB",
+    "partyCandidates": [
+      "1. Andrew Rivera",
+      "2. Rachel Campbell",
+      "3. Victoria Flores",
+      "4. Anthony Adams",
+      "5. Jonathan Cooper",
+      "6. Madison Collins",
+      "7. Kayla Morris",
+      "8. Samuel Parker",
+      "9. Nicholas Evans"
+    ]
+  },
+  {
+    "partyName": "EUI",
+    "partyCandidates": [
+      "1. Ava Nelson",
+      "2. Ethan Adams",
+      "3. Christian Lewis",
+      "4. Sophia Jackson",
+      "5. William Hill",
+      "6. Nathan Wright",
+      "7. Megan Bailey",
+      "8. Isabella Torres",
+      "9. Christopher Phillips",
+      "10. Olivia Hall"
+    ]
+  }
+]
